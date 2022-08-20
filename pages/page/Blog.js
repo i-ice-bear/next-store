@@ -1,16 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import DesignerBanners from "./components/Incentives/DesignerBanners";
-import { motion } from "framer-motion";
-import FooterComponent from "./components/Footnote/Footer";
-import ProductListComponent from "./components/Product-lists/ProductList";
-import ShirtAndTees from "./components/Product-lists/Collection/ShirtAndTees";
 
 export default function HomePage() {
   return (
     <>
-      <div className="relative my-20 mt-35 py-0.5">
-        <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6 lg:mt-8 lg:py-8">
+      <div className="relative overflow-hidden">
+        <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6 lg:mt-32">
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
             <div className="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
               <h1>
@@ -24,13 +19,13 @@ export default function HomePage() {
                   <span className="block text-rose-600">Fashion Designers</span>
                 </span>
               </h1>
-              <h6 className="mt-3 text-base sm:mt-5 sm:text-xl lg:text-sm xl:text-xl">
+              <p className="mt-3 text-base text-gray-500 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl">
                 Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
                 lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
                 fugiat aliqua ad ad non deserunt sunt.
-              </h6>
+              </p>
               <div className="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
-                <h6 className="text-base font-medium">
+                <h6 className="text-base font-medium text-gray-900">
                   Sign up to get notified when its ready.
                 </h6>
                 <form action="#" method="POST" className="mt-3 sm:flex">
@@ -51,16 +46,15 @@ export default function HomePage() {
                     Notify me
                   </button>
                 </form>
-                <h6 className="mt-3 text-sm text-gray-400">
+                <p className="mt-3 text-sm text-gray-400">
                   We care about the protection of your data. Read our
                   <Link href="/">
-                    <span>
-                      <span className="mx-1 inline-block  font-medium text-rose-600">
-                        Privacy Policy
-                      </span>
-                    </span>
+                    <h6 className="mx-1 inline-block  font-medium text-rose-600 underline">
+                      Privacy Policy
+                    </h6>
                   </Link>
-                </h6>
+                  .
+                </p>
               </div>
             </div>
             <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
@@ -80,8 +74,24 @@ export default function HomePage() {
                     width={20}
                     height={20}
                     patternUnits="userSpaceOnUse"
-                  ></pattern>
+                  >
+                    <rect
+                      x={0}
+                      y={0}
+                      width={4}
+                      height={4}
+                      className="text-gray-200"
+                      fill="currentColor"
+                    />
+                  </pattern>
                 </defs>
+                <rect
+                  y={72}
+                  width={640}
+                  height={640}
+                  className="text-gray-50"
+                  fill="currentColor"
+                />
                 <rect
                   x={118}
                   width={404}
@@ -124,36 +134,6 @@ export default function HomePage() {
             </div>
           </div>
         </main>
-
-        <div className="Designer-banner">
-          <motion.div
-            initial={{
-              opacity: 0.5,
-              marginBottom: "3rem",
-            }}
-            animate={{
-              opacity: 1,
-              marginBottom: 0,
-            }}
-            transition={{
-              type: "tween",
-              duration: 2,
-            }}
-          >
-            <DesignerBanners />
-          </motion.div>
-        </div>
-        <div className="product-list">
-          <ProductListComponent />
-        </div>
-        <div className="shirts-and-tees">
-          <ShirtAndTees />
-        </div>
-        <div className="footer-component">
-          <motion.footer>
-            <FooterComponent />
-          </motion.footer>
-        </div>
       </div>
     </>
   );
