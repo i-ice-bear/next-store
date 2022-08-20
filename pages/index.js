@@ -100,7 +100,7 @@ export default function HomePage() {
           </div>
         </main>
 
-        {/* <div className="Designer-banner">
+        <div className="Designer-banner">
           <motion.div
             initial={{
               opacity: 0.5,
@@ -128,7 +128,7 @@ export default function HomePage() {
           <motion.footer>
             <FooterComponent />
           </motion.footer>
-        </div> */}
+        </div>
       </div>
     </>
   );
