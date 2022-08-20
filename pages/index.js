@@ -64,31 +64,6 @@ export default function HomePage() {
               </div>
             </div>
             <div className="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center">
-              <svg
-                className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-8 scale-75 origin-top sm:scale-100 lg:hidden"
-                width={640}
-                height={784}
-                fill="none"
-                viewBox="0 0 640 784"
-                aria-hidden="true"
-              >
-                <defs>
-                  <pattern
-                    id="4f4f415c-a0e9-44c2-9601-6ded5a34a13e"
-                    x={118}
-                    y={0}
-                    width={20}
-                    height={20}
-                    patternUnits="userSpaceOnUse"
-                  ></pattern>
-                </defs>
-                <rect
-                  x={118}
-                  width={404}
-                  height={784}
-                  fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)"
-                />
-              </svg>
               <div className="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
                 <button
                   type="button"
@@ -105,7 +80,7 @@ export default function HomePage() {
                     aria-hidden="true"
                   >
                     <svg
-                      className="h-20 w-20 text-indigo-500"
+                      className="h-20 text-indigo-500"
                       fill="currentColor"
                       viewBox="0 0 84 84"
                     >
@@ -125,7 +100,7 @@ export default function HomePage() {
           </div>
         </main>
 
-        <div className="Designer-banner">
+        {/* <div className="Designer-banner">
           <motion.div
             initial={{
               opacity: 0.5,
@@ -153,7 +128,7 @@ export default function HomePage() {
           <motion.footer>
             <FooterComponent />
           </motion.footer>
-        </div>
+        </div> */}
       </div>
     </>
   );

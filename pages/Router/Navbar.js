@@ -148,7 +148,7 @@ export default function NavbarComponent() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white absolute top-0 left-0 w-full">
+    <div className="bg-white" style={{position:"absolute",top:0,left:0,width:"100%"}}>
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -327,9 +327,9 @@ export default function NavbarComponent() {
       </Transition.Root>
 
       <header className="relative bg-white">
-        <p className="bg-rose-600 h-10 flex items-center justify-center text-sm font-medium text-white px-4 sm:px-6 lg:px-8">
+        <h6 className="bg-rose-600 h-10 w-full flex items-center justify-center text-sm font-medium text-white px-4 sm:px-6 lg:px-8">
           Sorry, We are in currently development
-        </p>
+        </h6>
 
         <nav
           aria-label="Top"
