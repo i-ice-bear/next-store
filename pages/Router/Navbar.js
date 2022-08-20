@@ -470,8 +470,7 @@ export default function NavbarComponent() {
                   ))}
 
                   {navigation.pages.map((page) => (
-                    <Link href={page.href}>
-
+                    <Link href={page.href} key={page.name}>
                     <span
                       className="flex cursor-pointer items-center text-sm font-medium text-gray-700 hover:text-gray-800"
                       >
