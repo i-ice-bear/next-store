@@ -137,6 +137,7 @@ const navigation = {
     { name: "Stores", href: "/" },
     { name: "Purchase Page", href: "../data/store-page" },
     { name: "Categories", href: "../page/Category" },
+    { name: "Fashion Community", href: "../page/Community" },
   ],
 };
 
