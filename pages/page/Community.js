@@ -119,7 +119,6 @@ export default function Example() {
                 <div className="pb-8 space-y-1">
                   {navigation.map((item) => (
                     <Link key={item.name} href={item.href}>
-
                       <span
                         className={classNames(
                           item.current
@@ -137,7 +136,7 @@ export default function Example() {
                             "flex-shrink-0 -ml-1 mr-3 h-6 w-6"
                           )}
                           aria-hidden="true"
-                          />
+                        />
                         <span className="truncate">{item.name}</span>
                       </span>
                     </Link>
@@ -192,11 +191,11 @@ export default function Example() {
                           aria-current={tab.current ? "page" : undefined}
                           className={classNames(
                             tab.current
-                              ? "text-gray-900"
-                              : "text-gray-500 hover:text-gray-700",
+                              ? "text-gray-900 hover:text-white cursor-pointer"
+                              : "text-gray-500 hover:text-white cursor-pointer ",
                             tabIdx === 0 ? "rounded-l-lg" : "",
-                            tabIdx === tabs.length - 1 ? "rounded-r-lg" : "",
-                            "group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center hover:bg-gray-50 focus:z-10"
+                            tabIdx === tabs.length - 1 ? "hover:text-white rounded-r-lg" : " hover:text-white",
+                            "group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-6 text-sm font-medium text-center cursor-pointer transition duration-300 hover:bg-rose-500 hover:text-white focus:z-10"
                           )}
                         >
                           <span>{tab.name}</span>

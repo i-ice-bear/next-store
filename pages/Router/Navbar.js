@@ -7,6 +7,7 @@ import {
   XIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
+import ModalComponent from "../components/Modal/Modal";
 
 const navigation = {
   categories: [
@@ -137,7 +138,7 @@ const navigation = {
     { name: "Stores", href: "/" },
     { name: "Purchase Page", href: "../data/store-page" },
     { name: "Categories", href: "../page/Category" },
-    { name: "Fashion Community", href: "../page/Community" },
+    { name: "Posts", href: "../page/Community" },
   ],
 };
 
@@ -149,7 +150,10 @@ export default function NavbarComponent() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white" style={{position:"absolute",top:0,left:0,width:"100%"}}>
+    <div
+      className="bg-white"
+      style={{ position: "absolute", top: 0, left: 0, width: "100%" }}
+    >
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
@@ -292,20 +296,16 @@ export default function NavbarComponent() {
               </div>
               <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 <div className="flow-root">
-                  <a
-                    href="#"
-                    className="-m-2 p-2 block font-medium text-gray-900"
-                  >
-                    Sign in
-                  </a>
+                  <span className="-m-2 p-2 block font-medium text-gray-900">
+                    <ModalComponent text="Sign in" />
+                  </span>
                 </div>
                 <div className="flow-root">
-                  <a
-                    href="#"
-                    className="-m-2 p-2 block font-medium text-gray-900"
-                  >
-                    Create account
-                  </a>
+                  <Link href={"../page/Login"}>
+                    <span className="-m-2 p-2 block font-medium text-gray-900">
+                      Create account
+                    </span>
+                  </Link>
                 </div>
               </div>
 
@@ -473,37 +473,31 @@ export default function NavbarComponent() {
 
                   {navigation.pages.map((page) => (
                     <Link href={page.href} key={page.name}>
-                    <span
-                      className="flex cursor-pointer items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                      >
-                      {page.name}
-                    </span>
-                        </Link>
+                      <span className="flex cursor-pointer items-center text-sm font-medium text-gray-700 hover:text-gray-800">
+                        {page.name}
+                      </span>
+                    </Link>
                   ))}
                 </div>
               </Popover.Group>
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Sign in
-                  </a>
-                  <span className="h-6 w-px bg-gray-200" aria-hidden="true" />
-                  <a
-                    href="#"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-800"
-                  >
-                    Create account
-                  </a>
+                  <span className="text-sm cursor-pointer font-medium text-gray-700 hover:text-gray-800">
+                    <ModalComponent text="Sign in" />
+                  </span>
+                  <span className="h-6 w-px cursor-pointer bg-gray-200" aria-hidden="true" />
+                  <Link href={"../page/Login"}>
+                    <span className="text-sm cursor-pointer font-medium text-gray-700 hover:text-gray-800">
+                      Create account
+                    </span>
+                  </Link>
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
                   <a
                     href="#"
-                    className="text-gray-700 hover:text-gray-800 flex items-center"
+                    className="text-gray-700 cursor-pointer hover:text-gray-800 flex items-center"
                   >
                     <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
