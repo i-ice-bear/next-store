@@ -135,7 +135,6 @@ const navigation = {
   ],
   pages: [
     { name: "Home", href: "/" },
-    { name: "Stores", href: "/" },
     { name: "Purchase Page", href: "../data/store-page" },
     { name: "Categories", href: "../page/Category" },
     { name: "Posts", href: "../page/Community" },
@@ -320,6 +319,7 @@ export default function NavbarComponent() {
                     CAD
                   </span>
                   <span className="sr-only">, change currency</span>
+                  
                 </a>
               </div>
             </div>
