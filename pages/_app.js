@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import NavbarComponent from "./Router/Navbar";
 import { createTheme, NextUIProvider } from "@nextui-org/react";
-// import { ThemeProvider as NextThemesProvider } from "next-themes";
+import { ThemeProvider as NextThemesProvider } from "next-themes";
 
 const lightTheme = createTheme({
   type: "light",
@@ -15,19 +15,19 @@ const darkTheme = createTheme({
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      {/* <NextThemesProvider
+      <NextThemesProvider
         defaultTheme="system"
         attribute="class"
         value={{
           light: lightTheme.className,
           dark: darkTheme.className,
         }}
-      > */}
-        {/* <NextUIProvider> */}
+      >
+        <NextUIProvider>
           <Component {...pageProps} />
           <NavbarComponent />
-        {/* </NextUIProvider> */}
-      {/* </NextThemesProvider> */}
+        </NextUIProvider>
+      </NextThemesProvider>
     </>
   );
 }

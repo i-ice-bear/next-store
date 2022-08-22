@@ -129,7 +129,9 @@ export default function Example() {
   const { query } = router.query;
 
   return (
-    <div className="my-10 mt-40">
+    <>    
+    <br />
+    <div className="my-20">
       <main className="mt-8 max-w-2xl mx-auto pb-16 px-4 sm:pb-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="lg:grid lg:grid-cols-12 lg:auto-rows-min lg:gap-x-8">
           <div className="lg:col-start-8 lg:col-span-5">
@@ -474,5 +476,6 @@ export default function Example() {
 
       <FooterComponent />
     </div>
+    </>
   );
 }

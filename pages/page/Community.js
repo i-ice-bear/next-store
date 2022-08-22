@@ -22,12 +22,8 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 
-const user = {
-  name: "Chelsea Hagon",
-  email: "chelsea.hagon@example.com",
-  imageUrl:
-    "https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
-};
+
+
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
   { name: "Popular", href: "#", icon: FireIcon, current: false },
@@ -125,11 +121,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function CommunityPageComponent() {
   return (
     <>
-      <div className="min-h-full mt-20">
-        <div className="py-10">
+      <div className="min-h-full">
+        <br />
+        <div className="py-10 my-10">
           <div className="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
             <div className="hidden lg:block lg:col-span-3 xl:col-span-2">
               <nav

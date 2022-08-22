@@ -8,6 +8,9 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import ModalComponent from "../components/Modal/Modal";
+// 4. Use `next-themes` to change the theme
+import { useTheme as useNextTheme } from "next-themes";
+import { Switch, Text, useTheme } from "@nextui-org/react";
 
 const navigation = {
   categories: [
@@ -147,13 +150,19 @@ function classNames(...classes) {
 
 export default function NavbarComponent() {
   const [open, setOpen] = useState(false);
-
+  const { setTheme } = useNextTheme();
+  const { isDark, type } = useTheme();
   return (
     <div
-      className="bg-white"
-      style={{ position: "absolute", top: 0, left: 0, width: "100%" }}
+      className=""
+      style={{
+        position: "absolute",
+        display: "inherit",
+        top: 0,
+        left: 0,
+        width: "100%",
+      }}
     >
-      {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -181,11 +190,15 @@ export default function NavbarComponent() {
             leaveFrom="translate-x-0"
             leaveTo="-translate-x-full"
           >
-            <div className="relative max-w-xs w-full bg-white shadow-xl pb-12 flex flex-col overflow-y-auto">
+            <div
+              className={`relative max-w-xs w-full bg-${
+                isDark ? "black" : "white"
+              } shadow-xl pb-12 flex flex-col overflow-y-auto`}
+            >
               <div className="px-4 pt-5 pb-2 flex">
                 <button
                   type="button"
-                  className="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-400"
+                  className="-m-2 p-2 rounded-md inline-flex items-center justify-center text-gray-800 bg-transparent"
                   onClick={() => setOpen(false)}
                 >
                   <span className="sr-only">Close menu</span>
@@ -204,7 +217,7 @@ export default function NavbarComponent() {
                           classNames(
                             selected
                               ? "text-indigo-600 border-indigo-600"
-                              : "text-gray-900 border-transparent",
+                              : " border-transparent",
                             "flex-1 whitespace-nowrap py-4 px-1 border-b-2 text-base font-medium"
                           )
                         }
@@ -226,7 +239,7 @@ export default function NavbarComponent() {
                             key={item.name}
                             className="group relative text-sm"
                           >
-                            <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+                            <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-transition   hover:opacity-75">
                               <img
                                 src={item.imageSrc}
                                 alt={item.imageAlt}
@@ -235,7 +248,7 @@ export default function NavbarComponent() {
                             </div>
                             <a
                               href={item.href}
-                              className="mt-6 block font-medium text-gray-900"
+                              className="mt-6 block font-medium "
                             >
                               <span
                                 className="absolute z-10 inset-0"
@@ -253,7 +266,7 @@ export default function NavbarComponent() {
                         <div key={section.name}>
                           <p
                             id={`${category.id}-${section.id}-heading-mobile`}
-                            className="font-medium text-gray-900"
+                            className="font-medium "
                           >
                             {section.name}
                           </p>
@@ -264,10 +277,7 @@ export default function NavbarComponent() {
                           >
                             {section.items.map((item) => (
                               <li key={item.name} className="flow-root">
-                                <a
-                                  href={item.href}
-                                  className="-m-2 p-2 block text-gray-500"
-                                >
+                                <a href={item.href} className="-m-2 p-2 block ">
                                   {item.name}
                                 </a>
                               </li>
@@ -285,7 +295,7 @@ export default function NavbarComponent() {
                   <div key={page.name} className="flow-root">
                     <Link href={page.href}>
                       <span>
-                        <span className="-m-2 p-2 block font-medium text-gray-900">
+                        <span className="-m-2 p-2 block font-medium ">
                           {page.name}
                         </span>
                       </span>
@@ -295,13 +305,13 @@ export default function NavbarComponent() {
               </div>
               <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 <div className="flow-root">
-                  <span className="-m-2 p-2 block font-medium text-gray-900">
+                  <span className="-m-2 p-2 block font-medium ">
                     <ModalComponent text="Sign in" />
                   </span>
                 </div>
                 <div className="flow-root">
                   <Link href={"../page/Login"}>
-                    <span className="-m-2 p-2 block font-medium text-gray-900">
+                    <span className="-m-2 p-2 block font-medium ">
                       Create account
                     </span>
                   </Link>
@@ -315,23 +325,28 @@ export default function NavbarComponent() {
                     alt=""
                     className="w-5 h-auto block flex-shrink-0"
                   />
-                  <span className="ml-3 block text-base font-medium text-gray-900">
-                    CAD
-                  </span>
+                  <span className="ml-3 block text-base font-medium ">CAD</span>
                   <span className="sr-only">, change currency</span>
-                  
                 </a>
+                <div className="dark-mode-toggle">
+                  <span>
+                    <Switch
+                      color="error"
+                      className="my-10"
+                      checked={isDark}
+                      onChange={(e) =>
+                        setTheme(e.target.checked ? "dark" : "light")
+                      }
+                    />
+                  </span>
+                </div>
               </div>
             </div>
           </Transition.Child>
         </Dialog>
       </Transition.Root>
 
-      <header className="relative bg-white">
-        <h6 className="bg-rose-600 h-10 w-full flex items-center justify-center text-sm font-medium text-white px-4 sm:px-6 lg:px-8">
-          Sorry, We are in currently development
-        </h6>
-
+      <header className="relative">
         <nav
           aria-label="Top"
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
@@ -340,7 +355,7 @@ export default function NavbarComponent() {
             <div className="h-16 flex items-center">
               <button
                 type="button"
-                className="bg-white p-2 rounded-md text-gray-400 lg:hidden"
+                className="bg-white p-2 rounded-md text-gray-600 lg:hidden"
                 onClick={() => setOpen(true)}
               >
                 <span className="sr-only">Open menu</span>
@@ -350,12 +365,19 @@ export default function NavbarComponent() {
               {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
                 <Link href="/">
-                  <span>
+                  <span className="flex text-center align-center justify-center ">
                     <img
-                      className="h-8 w-auto"
+                      className="h-8 w-auto rounded-2xl"
                       src="/images/util/Logo.png"
                       alt=""
                     />
+
+                    <p
+                      className="mx-3 
+                    font-weighttransform-gpu"
+                    >
+                      Andy shoppe
+                    </p>
                   </span>
                 </Link>
               </div>
@@ -370,8 +392,8 @@ export default function NavbarComponent() {
                             <Popover.Button
                               className={classNames(
                                 open
-                                  ? "border-indigo-600 text-indigo-600"
-                                  : "border-transparent text-gray-700 hover:text-gray-800",
+                                  ? "border-rose-400 text-rose-600"
+                                  : "border-transparent transition   hover:text-rose-500",
                                 "relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px"
                               )}
                             >
@@ -388,7 +410,7 @@ export default function NavbarComponent() {
                             leaveFrom="opacity-100"
                             leaveTo="opacity-0"
                           >
-                            <Popover.Panel className="absolute top-full inset-x-0 text-sm text-gray-500">
+                            <Popover.Panel className="absolute top-full inset-x-0 text-sm text-rose-500">
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div
                                 className="absolute inset-0 top-1/2 bg-white shadow"
@@ -404,7 +426,7 @@ export default function NavbarComponent() {
                                           key={item.name}
                                           className="group relative text-base sm:text-sm"
                                         >
-                                          <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-hover:opacity-75">
+                                          <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-transition   hover:opacity-75">
                                             <img
                                               src={item.imageSrc}
                                               alt={item.imageAlt}
@@ -413,7 +435,7 @@ export default function NavbarComponent() {
                                           </div>
                                           <a
                                             href={item.href}
-                                            className="mt-6 block font-medium text-gray-900"
+                                            className="mt-6 block font-medium "
                                           >
                                             <span
                                               className="absolute z-10 inset-0"
@@ -435,7 +457,7 @@ export default function NavbarComponent() {
                                         <div key={section.name}>
                                           <p
                                             id={`${section.name}-heading`}
-                                            className="font-medium text-gray-900"
+                                            className="font-medium "
                                           >
                                             {section.name}
                                           </p>
@@ -451,7 +473,7 @@ export default function NavbarComponent() {
                                               >
                                                 <a
                                                   href={item.href}
-                                                  className="hover:text-gray-800"
+                                                  className="transition   hover:text-rose-600"
                                                 >
                                                   {item.name}
                                                 </a>
@@ -473,7 +495,7 @@ export default function NavbarComponent() {
 
                   {navigation.pages.map((page) => (
                     <Link href={page.href} key={page.name}>
-                      <span className="flex cursor-pointer items-center text-sm font-medium text-gray-700 hover:text-gray-800">
+                      <span className="flex cursor-pointer items-center text-sm font-medium text-white transition    hover:text-rose-600">
                         {page.name}
                       </span>
                     </Link>
@@ -483,12 +505,15 @@ export default function NavbarComponent() {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <span className="text-sm cursor-pointer font-medium text-gray-700 hover:text-gray-800">
+                  <span className="text-sm cursor-pointer font-medium text-rose-700 transition   hover:text-rose-800">
                     <ModalComponent text="Sign in" />
                   </span>
-                  <span className="h-6 w-px cursor-pointer bg-gray-200" aria-hidden="true" />
+                  <span
+                    className="h-6 w-px cursor-pointer bg-gray-200"
+                    aria-hidden="true"
+                  />
                   <Link href={"../page/Login"}>
-                    <span className="text-sm cursor-pointer font-medium text-gray-700 hover:text-gray-800">
+                    <span className="text-sm cursor-pointer font-medium text-white transition   hover:text-rose-800">
                       Create account
                     </span>
                   </Link>
@@ -497,7 +522,7 @@ export default function NavbarComponent() {
                 <div className="hidden lg:ml-8 lg:flex">
                   <a
                     href="#"
-                    className="text-gray-700 cursor-pointer hover:text-gray-800 flex items-center"
+                    className="text-white cursor-pointer transition   hover:text-rose-600 flex items-center"
                   >
                     <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
@@ -511,7 +536,10 @@ export default function NavbarComponent() {
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
-                  <a href="#" className="p-2 text-gray-400 hover:text-gray-500">
+                  <a
+                    href="#"
+                    className="p-2 text-white transition   hover:text-rose-500"
+                  >
                     <span className="sr-only">Search</span>
                     <SearchIcon className="w-6 h-6" aria-hidden="true" />
                   </a>
@@ -521,10 +549,10 @@ export default function NavbarComponent() {
                 <div className="ml-4 flow-root lg:ml-6">
                   <a href="#" className="group -m-2 p-2 flex items-center">
                     <ShoppingBagIcon
-                      className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
+                      className="flex-shrink-0 h-6 w-6 text-gray-400 group-transition   hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                    <span className="ml-2 text-sm font-medium text-white group-transition   hover:text-rose-700">
                       0
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
