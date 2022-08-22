@@ -495,7 +495,7 @@ export default function NavbarComponent() {
 
                   {navigation.pages.map((page) => (
                     <Link href={page.href} key={page.name}>
-                      <span className="flex cursor-pointer items-center text-sm font-medium text-white transition    hover:text-rose-600">
+                      <span className="flex cursor-pointer items-center text-sm font-medium  transition    hover:text-rose-600">
                         {page.name}
                       </span>
                     </Link>
@@ -513,7 +513,7 @@ export default function NavbarComponent() {
                     aria-hidden="true"
                   />
                   <Link href={"../page/Login"}>
-                    <span className="text-sm cursor-pointer font-medium text-white transition   hover:text-rose-800">
+                    <span className="text-sm cursor-pointer font-medium  transition   hover:text-rose-800">
                       Create account
                     </span>
                   </Link>
@@ -522,7 +522,7 @@ export default function NavbarComponent() {
                 <div className="hidden lg:ml-8 lg:flex">
                   <a
                     href="#"
-                    className="text-white cursor-pointer transition   hover:text-rose-600 flex items-center"
+                    className=" cursor-pointer transition   hover:text-rose-600 flex items-center"
                   >
                     <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
@@ -538,7 +538,7 @@ export default function NavbarComponent() {
                 <div className="flex lg:ml-6">
                   <a
                     href="#"
-                    className="p-2 text-white transition   hover:text-rose-500"
+                    className="p-2  transition   hover:text-rose-500"
                   >
                     <span className="sr-only">Search</span>
                     <SearchIcon className="w-6 h-6" aria-hidden="true" />
@@ -552,7 +552,7 @@ export default function NavbarComponent() {
                       className="flex-shrink-0 h-6 w-6 text-gray-400 group-transition   hover:text-gray-500"
                       aria-hidden="true"
                     />
-                    <span className="ml-2 text-sm font-medium text-white group-transition   hover:text-rose-700">
+                    <span className="ml-2 text-sm font-medium  group-transition   hover:text-rose-700">
                       0
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
