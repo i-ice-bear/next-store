@@ -9,7 +9,7 @@ import ShirtAndTees from "./components/Product-lists/Collection/ShirtAndTees";
 export default function HomePage() {
   return (
     <>
-      <div className="relative py-1.5 px-20">
+      <div className="relative py-1.5 px-0.5">
         <br />
         <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 sm:px-6 lg:mt-8 lg:py-8">
           <div className="lg:grid lg:grid-cols-12 lg:gap-8">
