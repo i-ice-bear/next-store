@@ -76,9 +76,9 @@ const updates = [
     replies: "11",
     views: "2.7k",
     author: {
-      name: "Anshika Choudhary",
+      name: "Mink Down",
       imageUrl:
-        "/images/Assets/incentive-pics/spare-pic.jpg",
+        "/images/util/card.jpg",
       href: "/",
     },
     date: "February 1 at 11:43 PM",
