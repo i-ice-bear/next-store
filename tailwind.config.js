@@ -9,6 +9,13 @@ module.exports = {
     fontFamily:{
       "quicksand":["Quicksand","sans-serif"]
     },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman',
+    }
   },
   plugins: [
     require('@tailwindcss/forms'),
