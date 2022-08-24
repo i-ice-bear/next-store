@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "postbuild": "node ./scripts/build-search.js",
     "export": "next build && next export"
   },
   "dependencies": {
@@ -16,12 +17,15 @@
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.5.2",
     "@tailwindcss/line-clamp": "^0.4.0",
+    "algoliasearch": "^4.14.2",
+    "dotenv": "^16.0.1",
     "framer-motion": "^7.2.0",
     "next": "12.2.5",
     "next-themes": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.4.0"
+    "react-icons": "^4.4.0",
+    "react-instantsearch-dom": "^6.32.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.8",
