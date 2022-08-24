@@ -6,6 +6,9 @@ module.exports = {
   ],
   theme: {
     extend: {},
+    fontFamily:{
+      "quicksand":["Quicksand","sans-serif"]
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),

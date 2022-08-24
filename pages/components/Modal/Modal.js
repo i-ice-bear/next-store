@@ -15,7 +15,7 @@ export default function ModalComponent(props) {
 
   return (
     <div>
-      <a onClick={handler}>{props.text}</a>
+      <p className="font-quicksand text-sm" onClick={handler}>{props.text}</p>
       <Modal
         closeButton
         aria-labelledby="modal-title"

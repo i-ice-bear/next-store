@@ -8,9 +8,9 @@ import {
 } from "@heroicons/react/outline";
 import Link from "next/link";
 import ModalComponent from "../components/Modal/Modal";
-// 4. Use `next-themes` to change the theme
 import { useTheme as useNextTheme } from "next-themes";
 import { Switch, Text, useTheme } from "@nextui-org/react";
+import TailwindSwitchComponent from "../components/Switch/TailwindSwitch";
 
 const navigation = {
   categories: [
@@ -152,6 +152,9 @@ export default function NavbarComponent() {
   const [open, setOpen] = useState(false);
   const { setTheme } = useNextTheme();
   const { isDark, type } = useTheme();
+  function darkModeToggle(e){
+      setTheme(e.target.checked ? "dark" : "light")
+  }
   return (
     <div
       className=""
@@ -520,8 +523,7 @@ export default function NavbarComponent() {
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
-                  <a
-                    href="#"
+                  <span
                     className=" cursor-pointer transition   hover:text-rose-600 flex items-center"
                   >
                     <img
@@ -531,20 +533,34 @@ export default function NavbarComponent() {
                     />
                     <span className="ml-3 block text-sm font-medium">CAD</span>
                     <span className="sr-only">, change currency</span>
-                  </a>
+                  </span>
                 </div>
 
                 {/* Search */}
                 <div className="flex lg:ml-6">
-                  <a
+                  <span
                     href="#"
                     className="p-2  transition   hover:text-rose-500"
                   >
                     <span className="sr-only">Search</span>
                     <SearchIcon className="w-6 h-6" aria-hidden="true" />
-                  </a>
+                  </span>
                 </div>
-
+                <div className="flex lg:ml-6">
+                  <span
+                    className="p-2  transition hover:text-rose-500 mb-2"
+                  >
+                    <span className="sr-only">Search</span>
+                    <Switch
+                      color="error"
+                      className="my-10"
+                      checked={isDark}
+                      onChange={(e) =>
+                        setTheme(e.target.checked ? "dark" : "light")
+                      }
+                    />
+                  </span>
+                </div>
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
                   <a href="#" className="group -m-2 p-2 flex items-center">
