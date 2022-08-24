@@ -4,6 +4,8 @@ import { Menu, Popover, Transition } from "@headlessui/react";
 import { MdVerified } from "react-icons/md";
 import { Text } from "@nextui-org/react";
 import { useTheme } from "@nextui-org/react";
+import { Card } from "@nextui-org/react";
+
 import {
   ChatAltIcon,
   CodeIcon,
@@ -444,9 +446,7 @@ export default function CommunityPageComponent() {
                                   className="h-5 w-5"
                                   aria-hidden="true"
                                 />
-                                <span className="font-medium ">
-                                  Share
-                                </span>
+                                <span className="font-medium ">Share</span>
                               </button>
                             </span>
                           </div>
@@ -460,133 +460,143 @@ export default function CommunityPageComponent() {
             <aside className="hidden xl:block xl:col-span-4">
               <div className="sticky top-4 space-y-4">
                 <section aria-labelledby="who-to-follow-heading">
-                  <div className="bg-white rounded-lg shadow">
-                    <div className="p-6">
-                      <h2
-                        id="who-to-follow-heading"
-                        className="text-base font-medium text-gray-900"
-                      >
-                        Who to follow
-                      </h2>
-                      <div className="mt-6 flow-root">
-                        <ul
-                          role="list"
-                          className="-my-4 divide-y divide-gray-200"
-                        >
-                          {whoToFollow.map((user) => (
-                            <li
-                              key={user.handle}
-                              className="flex items-center py-4 space-x-3"
-                            >
-                              <div className="flex-shrink-0">
-                                <img
-                                  className="h-8 w-8 rounded-full"
-                                  src={user.imageUrl}
-                                  alt=""
-                                />
-                              </div>
-                              <div className="min-w-0 flex-1">
-                                <p className="text-sm font-medium text-gray-900">
-                                  <Link href="/">
-                                    <span href={user.href}>{user.name}</span>
-                                  </Link>
-                                </p>
-                                <p className="text-sm text-gray-500">
-                                  <Link href="/">
-                                    <span
-                                      href={user.href}
-                                      className="cursor-pointer"
-                                    >
-                                      {"@" + user.handle}
-                                    </span>
-                                  </Link>
-                                </p>
-                              </div>
-                              <div className="flex-shrink-0">
-                                <button
-                                  type="button"
-                                  className="inline-flex items-center px-3 py-0.5 rounded-full bg-rose-50 hover:bg-rose-300 hover:text-rose-50 text-sm font-medium transition text-rose-700"
-                                >
-                                  <PlusSmIcon
-                                    className="-ml-1 mr-0.5 h-5 w-5 text-rose-400 hover:text-rose-50 transition"
-                                    aria-hidden="true"
-                                  />
-                                  <span>Follow</span>
-                                </button>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                      <div className="mt-6">
-                        <Link href="/">
-                          <span
-                            href="#"
-                            className="w-full block text-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                  <Card isHoverable variant="bordered">
+                    <Card.Body>
+                      <div className="rounded-lg">
+                        <div className="p-6">
+                          <h2
+                            id="who-to-follow-heading"
+                            className="text-base font-medium"
                           >
-                            View all
-                          </span>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-                <section aria-labelledby="trending-heading">
-                  <div className="bg-white rounded-lg shadow">
-                    <div className="p-6">
-                      <h2
-                        id="trending-heading"
-                        className="text-base font-medium text-gray-900"
-                      >
-                        Trending
-                      </h2>
-                      <div className="mt-6 flow-root">
-                        <ul
-                          role="list"
-                          className="-my-4 divide-y divide-gray-200"
-                        >
-                          {trendingPosts.map((post) => (
-                            <li key={post.id} className="flex py-4 space-x-3">
-                              <div className="flex-shrink-0">
-                                <img
-                                  className="h-8 w-8 rounded-full"
-                                  src={post.user.imageUrl}
-                                  alt={post.user.name}
-                                />
-                              </div>
-                              <div className="min-w-0 flex-1">
-                                <p className="text-sm">
-                                  {post.body}
-                                </p>
-                                <div className="mt-2 flex">
-                                  <span className="inline-flex items-center text-sm">
+                            Who to follow
+                          </h2>
+                          <div className="mt-6 flow-root">
+                            <ul role="list" className="-my-4 divide-y">
+                              {whoToFollow.map((user) => (
+                                <li
+                                  key={user.handle}
+                                  className="flex items-center py-4 space-x-4"
+                                >
+                                  <div className="flex-shrink-2">
+                                    <img
+                                      className="h-8 w-8 rounded-full"
+                                      src={user.imageUrl}
+                                      alt=""
+                                    />
+                                  </div>
+                                  <div className="min-w-0 flex-1">
+                                    <p className="text-sm font-medium ">
+                                      <Link href="/">
+                                        <span href={user.href}>
+                                          {user.name}
+                                        </span>
+                                      </Link>
+                                    </p>
+                                    <p className="text-sm">
+                                      <Link href="/">
+                                        <span
+                                          href={user.href}
+                                          className="cursor-pointer"
+                                        >
+                                          {"@" + user.handle}
+                                        </span>
+                                      </Link>
+                                    </p>
+                                  </div>
+                                  <div className="flex-shrink-0">
                                     <button
                                       type="button"
-                                      className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
+                                      className="inline-flex items-center px-3 py-0.5 rounded-full bg-rose-50 hover:bg-rose-300 hover:text-rose-50 text-sm font-medium transition text-rose-700"
                                     >
-                                      <ChatAltIcon
-                                        className="h-5 w-5"
+                                      <PlusSmIcon
+                                        className="-ml-1 mr-0.5 h-5 w-5 text-rose-400 hover:text-rose-50 transition"
                                         aria-hidden="true"
                                       />
-                                      <span className="font-medium text-gray-900">
-                                        {post.comments}
-                                      </span>
+                                      <span>Follow</span>
                                     </button>
-                                  </span>
-                                </div>
-                              </div>
-                            </li>
-                          ))}
-                        </ul>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="mt-6">
+                            <Link href="/">
+                              <span
+                                href="#"
+                                className="w-full block text-center px-4 py-2 border hover:text-white shadow-sm text-sm font-medium rounded-md  bg-rose-300 hover:bg-rose-600 cursor-pointer transition duration-300 "
+                              >
+                                View all
+                              </span>
+                            </Link>
+                          </div>
+                        </div>
                       </div>
-                      <div className="mt-6">
-                        <Link href="/">
-                          <span className="w-full block text-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50">
-                            View all
-                          </span>
-                        </Link>
-                      </div>
-                    </div>
+                    </Card.Body>
+                  </Card>
+                </section>
+                <section aria-labelledby="trending-heading">
+                  <div className="rounded-lg shadow">
+                    <Card isHoverable variant="bordered">
+                        
+                        <div className="p-6">
+                          <h2
+                            id="trending-heading"
+                            className="text-base font-medium"
+                          >
+                            Trending
+                          </h2>
+                          <div className="mt-6 flow-root">
+                            <ul
+                              role="list"
+                              className="-my-4 divide-y divide-gray-200"
+                            >
+                              {trendingPosts.map((post) => (
+                                <li
+                                  key={post.id}
+                                  className="flex py-4 space-x-3"
+                                >
+                                  <div className="flex-shrink-0">
+                                    <img
+                                      className="h-8 w-8 rounded-full"
+                                      src={post.user.imageUrl}
+                                      alt={post.user.name}
+                                    />
+                                  </div>
+                                  <div className="min-w-0 flex-1">
+                                    <p className="text-sm">{post.body}</p>
+                                    <div className="mt-2 flex">
+                                      <span className="inline-flex items-center text-sm">
+                                        <button
+                                          type="button"
+                                          className="inline-flex space-x-2  hover:text-rose-500"
+                                          >
+                                          <ChatAltIcon
+                                            className="h-5 w-5"
+                                            aria-hidden="true"
+                                          />
+                                          <span className="font-medium">
+                                            {post.comments}
+                                          </span>
+                                        </button>
+                                      </span>
+                                    </div>
+                                  </div>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                            
+                          <div className="mt-6">
+                            <Link href="/">
+                              <button className="w-full block text-center px-4 py-2 shadow-sm text-sm cursor-pointer font-medium rounded-md text-rose-700 hover:text-white
+                              transition duration-200 bg-white hover:bg-rose-400">
+                                View all
+                              </button>
+                            </Link>
+                          </div>
+                        </div>
+
+                    </Card>
                   </div>
                 </section>
               </div>
