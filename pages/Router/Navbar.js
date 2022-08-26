@@ -152,8 +152,8 @@ export default function NavbarComponent() {
   const [open, setOpen] = useState(false);
   const { setTheme } = useNextTheme();
   const { isDark, type } = useTheme();
-  function darkModeToggle(e){
-      setTheme(e.target.checked ? "dark" : "light")
+  function darkModeToggle(e) {
+    setTheme(e.target.checked ? "dark" : "light");
   }
   return (
     <div
@@ -267,12 +267,12 @@ export default function NavbarComponent() {
                       </div>
                       {category.sections.map((section) => (
                         <div key={section.name}>
-                          <p
+                          <h6
                             id={`${category.id}-${section.id}-heading-mobile`}
                             className="font-medium "
                           >
                             {section.name}
-                          </p>
+                          </h6>
                           <ul
                             role="list"
                             aria-labelledby={`${category.id}-${section.id}-heading-mobile`}
@@ -280,9 +280,12 @@ export default function NavbarComponent() {
                           >
                             {section.items.map((item) => (
                               <li key={item.name} className="flow-root">
-                                <a href={item.href} className="-m-2 p-2 block ">
+                                <span
+                                  href={item.href}
+                                  className="-m-2 p-2 block "
+                                >
                                   {item.name}
-                                </a>
+                                </span>
                               </li>
                             ))}
                           </ul>
@@ -354,11 +357,11 @@ export default function NavbarComponent() {
           aria-label="Top"
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         >
-          <div className="border-gray-200">
+          <div className="">
             <div className="h-16 flex items-center">
               <button
                 type="button"
-                className="bg-white p-2 rounded-md text-gray-600 lg:hidden"
+                className=" p-2 rounded-md text-gray-600 lg:hidden"
                 onClick={() => setOpen(true)}
               >
                 <span className="sr-only">Open menu</span>
@@ -416,11 +419,15 @@ export default function NavbarComponent() {
                             <Popover.Panel className="absolute top-full inset-x-0 text-sm text-rose-500">
                               {/* Presentational element used to render the bottom shadow, if we put the shadow on the actual panel it pokes out the top, so we use this shorter element to hide the top of the shadow */}
                               <div
-                                className="absolute inset-0 top-1/2 bg-white shadow"
+                                className="absolute inset-0 top-1/2 shadow"
                                 aria-hidden="true"
                               />
 
-                              <div className="relative bg-white">
+                              <div
+                                className={`relative ${
+                                  isDark ? "bg-black" : "bg-white"
+                                }`}
+                              >
                                 <div className="max-w-7xl mx-auto px-8">
                                   <div className="grid grid-cols-2 gap-y-10 gap-x-8 py-16">
                                     <div className="col-start-2 grid grid-cols-2 gap-x-8">
@@ -429,23 +436,27 @@ export default function NavbarComponent() {
                                           key={item.name}
                                           className="group relative text-base sm:text-sm"
                                         >
-                                          <div className="aspect-w-1 aspect-h-1 rounded-lg bg-gray-100 overflow-hidden group-transition   hover:opacity-75">
+                                          <div
+                                            className={`aspect-w-1 aspect-h-1 rounded-lg hover:opacity-50 ${
+                                              isDark ? "bg-black" : "bg-white"
+                                            } overflow-hidden group-transition hover:opacity-50 `}
+                                          >
                                             <img
                                               src={item.imageSrc}
                                               alt={item.imageAlt}
-                                              className="object-center object-cover"
+                                              className="object-center  rounded-2xl object-cover"
                                             />
+                                            
                                           </div>
-                                          <a
-                                            href={item.href}
-                                            className="mt-6 block font-medium "
-                                          >
-                                            <span
-                                              className="absolute z-10 inset-0"
-                                              aria-hidden="true"
-                                            />
-                                            {item.name}
-                                          </a>
+                                          <Link href={item.href}>
+                                            <span className="mt-6 block cursor-pointer font-medium ">
+                                              <span
+                                                className="absolute my-3 z-10 inset-0"
+                                                aria-hidden="true"
+                                              />
+                                              {item.name}
+                                            </span>
+                                          </Link>
                                           <p
                                             aria-hidden="true"
                                             className="mt-1"
@@ -458,12 +469,12 @@ export default function NavbarComponent() {
                                     <div className="row-start-1 grid grid-cols-3 gap-y-10 gap-x-8 text-sm">
                                       {category.sections.map((section) => (
                                         <div key={section.name}>
-                                          <p
+                                          <h5
                                             id={`${section.name}-heading`}
-                                            className="font-medium "
+                                            className="font-large"
                                           >
                                             {section.name}
-                                          </p>
+                                          </h5>
                                           <ul
                                             role="list"
                                             aria-labelledby={`${section.name}-heading`}
@@ -474,12 +485,11 @@ export default function NavbarComponent() {
                                                 key={item.name}
                                                 className="flex"
                                               >
-                                                <a
-                                                  href={item.href}
-                                                  className="transition   hover:text-rose-600"
-                                                >
-                                                  {item.name}
-                                                </a>
+                                                <Link href={item.href}>
+                                                  <span className="transition cursor-pointer  hover:text-rose-600">
+                                                    {item.name}
+                                                  </span>
+                                                </Link>
                                               </li>
                                             ))}
                                           </ul>
@@ -523,9 +533,7 @@ export default function NavbarComponent() {
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
-                  <span
-                    className=" cursor-pointer transition   hover:text-rose-600 flex items-center"
-                  >
+                  <span className=" cursor-pointer transition   hover:text-rose-600 flex items-center">
                     <img
                       src="https://tailwindui.com/img/flags/flag-canada.svg"
                       alt=""
@@ -547,9 +555,7 @@ export default function NavbarComponent() {
                   </span>
                 </div>
                 <div className="flex lg:ml-6">
-                  <span
-                    className="p-2  transition hover:text-rose-500 mb-2"
-                  >
+                  <span className="p-2  transition hover:text-rose-500 mb-2">
                     <span className="sr-only">Search</span>
                     <Switch
                       color="error"
@@ -563,7 +569,7 @@ export default function NavbarComponent() {
                 </div>
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <a href="#" className="group -m-2 p-2 flex items-center">
+                  <span href="#" className="group -m-2 p-2 flex items-center">
                     <ShoppingBagIcon
                       className="flex-shrink-0 h-6 w-6 text-gray-400 group-transition   hover:text-gray-500"
                       aria-hidden="true"
@@ -572,7 +578,7 @@ export default function NavbarComponent() {
                       0
                     </span>
                     <span className="sr-only">items in cart, view bag</span>
-                  </a>
+                  </span>
                 </div>
               </div>
             </div>
