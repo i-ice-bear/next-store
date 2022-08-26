@@ -243,7 +243,7 @@ export default function IdeasPageComponent() {
                           aria-current={tab.current ? "page" : undefined}
                           className={classNames(
                             tab.current
-                              ? " hover:text-white cursor-pointer"
+                              ? " hover:text-white cursor-pointer bg-rose-500"
                               : " hover:text-white cursor-pointer ",
                             tabIdx === 0 ? "rounded-l-lg" : "",
                             tabIdx === tabs.length - 1
@@ -253,7 +253,7 @@ export default function IdeasPageComponent() {
                           )}
                         >
                           <span>
-                            <p className="font-quicksand"> {tab.name}</p>
+                            <p className="font-quicksand">{tab.name}</p>
                           </span>
                           <span
                             aria-hidden="true"
@@ -271,10 +271,11 @@ export default function IdeasPageComponent() {
               <div className="mt-4">
                 <h1 className="sr-only">Recent updates</h1>
                 <ul role="list" className="space-y-4">
-                  {updates.map((update) => (
+                {updates.map((update) => (
+                    <Card shadow variant="bordered" isHoverable>
                     <li
                       key={update.id}
-                      className="px-4 py-6 shadow sm:p-6 sm:rounded-lg"
+                      className="px-4 py-6 sm:p-6 sm:rounded-lg"
                     >
                       <article aria-labelledby={"update-title-" + update.id}>
                         <div>
@@ -421,7 +422,7 @@ export default function IdeasPageComponent() {
                             <span className="inline-flex items-center text-sm">
                               <button
                                 type="button"
-                                className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
+                                className="inline-flex space-x-2 text-rose-400 hover:text-rose-500"
                               >
                                 <ThumbUpIcon
                                   className="h-5 w-5"
@@ -436,7 +437,7 @@ export default function IdeasPageComponent() {
                             <span className="inline-flex items-center text-sm">
                               <button
                                 type="button"
-                                className="inline-flex space-x-2  hover:text-gray-500"
+                                className="inline-flex space-x-2  hover:text-rose-500"
                               >
                                 <ChatAltIcon
                                   className="h-5 w-5"
@@ -451,7 +452,7 @@ export default function IdeasPageComponent() {
                             <span className="inline-flex items-center text-sm">
                               <button
                                 type="button"
-                                className="inline-flex space-x-2  hover:text-gray-500"
+                                className="inline-flex space-x-2  hover:text-rose-500"
                               >
                                 <EyeIcon
                                   className="h-5 w-5"
@@ -468,7 +469,7 @@ export default function IdeasPageComponent() {
                             <span className="inline-flex items-center text-sm">
                               <button
                                 type="button"
-                                className="inline-flex space-x-2 hover:text-gray-500"
+                                className="inline-flex space-x-2 hover:text-rose-500"
                               >
                                 <ShareIcon
                                   className="h-5 w-5"
@@ -481,6 +482,8 @@ export default function IdeasPageComponent() {
                         </div>
                       </article>
                     </li>
+                    </Card>
+
                   ))}
                 </ul>
               </div>

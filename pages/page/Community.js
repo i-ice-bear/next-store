@@ -2,10 +2,12 @@ import React from "react";
 import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { MdVerified } from "react-icons/md";
-import { Text } from "@nextui-org/react";
+import { Button, Text } from "@nextui-org/react";
 import { useTheme } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
-import { ChevronRightIcon } from "@heroicons/react/solid";
+import {  ChevronRightIcon, } from "@heroicons/react/solid";
+import { Heart2 } from "react-iconly";
+
 import {
   ChatAltIcon,
   CodeIcon,
@@ -24,6 +26,7 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
+
 
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
@@ -196,15 +199,13 @@ export default function CommunityPageComponent() {
                       <li>
                         <div>
                           <Link href="/">
-                          <span
-                            className=" hover:text-rose-500"
-                          >
-                            <HomeIcon
-                              className="flex-shrink-0 cursor-pointer h-5 w-5"
-                              aria-hidden="true"
-                            />
-                            <span className="sr-only">Home</span>
-                          </span>
+                            <span className=" hover:text-rose-500">
+                              <HomeIcon
+                                className="flex-shrink-0 cursor-pointer h-5 w-5"
+                                aria-hidden="true"
+                              />
+                              <span className="sr-only">Home</span>
+                            </span>
                           </Link>
                         </div>
                       </li>
@@ -242,7 +243,7 @@ export default function CommunityPageComponent() {
                           aria-current={tab.current ? "page" : undefined}
                           className={classNames(
                             tab.current
-                              ? " hover:text-white cursor-pointer"
+                              ? " hover:text-white cursor-pointer bg-rose-500"
                               : " hover:text-white cursor-pointer ",
                             tabIdx === 0 ? "rounded-l-lg" : "",
                             tabIdx === tabs.length - 1
@@ -252,7 +253,7 @@ export default function CommunityPageComponent() {
                           )}
                         >
                           <span>
-                            <p className="font-quicksand"> {tab.name}</p>
+                            <p className="font-quicksand">{tab.name}</p>
                           </span>
                           <span
                             aria-hidden="true"
@@ -267,219 +268,221 @@ export default function CommunityPageComponent() {
                   </nav>
                 </div>
               </div>
-              <div className="mt-4">
+              <div className="mt-8">
                 <h1 className="sr-only">Recent updates</h1>
                 <ul role="list" className="space-y-4">
                   {updates.map((update) => (
-                    <li
-                      key={update.id}
-                      className="px-4 py-6 shadow sm:p-6 sm:rounded-lg"
-                    >
-                      <article aria-labelledby={"update-title-" + update.id}>
-                        <div>
-                          <div className="flex space-x-3">
-                            <div className="flex-shrink-0">
-                              <img
-                                className="h-10 w-10 rounded-full object-cover justify-center"
-                                src={update.author.imageUrl}
-                                alt=""
-                              />
-                            </div>
-                            <div className="min-w-0 flex-1">
-                              <p className="text-sm font-medium ">
-                                <Link href={update.author.href}>
-                                  <span className="hover:underline">
-                                    {update.author.name}
-                                    <span className="inline-block mx-1">
-                                      <MdVerified />
+                    <Card shadow variant="bordered" isHoverable>
+                      <li
+                        key={update.id}
+                        className="px-4 py-6 sm:p-6 sm:rounded-lg"
+                      >
+                        <article aria-labelledby={"update-title-" + update.id}>
+                          <div>
+                            <div className="flex space-x-3">
+                              <div className="flex-shrink-0">
+                                <img
+                                  className="h-10 w-10 rounded-full object-cover justify-center"
+                                  src={update.author.imageUrl}
+                                  alt=""
+                                />
+                              </div>
+                              <div className="min-w-0 flex-1">
+                                <p className="text-sm font-medium ">
+                                  <Link href={update.author.href}>
+                                    <span className="hover:underline">
+                                      {update.author.name}
+                                      <span className="inline-block mx-1">
+                                        <MdVerified />
+                                      </span>
                                     </span>
-                                  </span>
-                                </Link>
-                              </p>
-                              <p className="text-sm text-rose-200">
-                                <Link href={update.href}>
-                                  <span className="hover:underline">
-                                    <time dateTime={update.datetime}>
-                                      {update.date}
-                                    </time>
-                                  </span>
-                                </Link>
-                              </p>
-                            </div>
-                            <div className="flex-shrink-0 self-center flex">
-                              <Menu
-                                as="div"
-                                className="relative inline-block text-left"
-                              >
-                                <div>
-                                  <Menu.Button className="-m-2 p-2 rounded-full flex items-center  hover:text-rose-600 transition duration-200">
-                                    <span className="sr-only">
-                                      Open options
+                                  </Link>
+                                </p>
+                                <p className="text-sm text-rose-200">
+                                  <Link href={update.href}>
+                                    <span className="hover:underline">
+                                      <time dateTime={update.datetime}>
+                                        {update.date}
+                                      </time>
                                     </span>
-                                    <DotsVerticalIcon
-                                      className="h-5 w-5"
-                                      aria-hidden="true"
-                                    />
-                                  </Menu.Button>
-                                </div>
-
-                                <Transition
-                                  as={Fragment}
-                                  enter="transition ease-out duration-100"
-                                  enterFrom="transform opacity-0 scale-95"
-                                  enterTo="transform opacity-100 scale-100"
-                                  leave="transition ease-in duration-75"
-                                  leaveFrom="transform opacity-100 scale-100"
-                                  leaveTo="transform opacity-0 scale-95"
+                                  </Link>
+                                </p>
+                              </div>
+                              <div className="flex-shrink-0 self-center flex">
+                                <Menu
+                                  as="div"
+                                  className="relative inline-block text-left"
                                 >
-                                  <Menu.Items
-                                    className={`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-${
-                                      isDark ? "rose-500" : "white"
-                                    } ring-1 ring-black ring-opacity-5 focus:outline-none`}
+                                  <div>
+                                    <Menu.Button className="-m-2 p-2 rounded-full flex items-center  hover:text-rose-600 transition duration-200">
+                                      <span className="sr-only">
+                                        Open options
+                                      </span>
+                                      <DotsVerticalIcon
+                                        className="h-5 w-5"
+                                        aria-hidden="true"
+                                      />
+                                    </Menu.Button>
+                                  </div>
+
+                                  <Transition
+                                    as={Fragment}
+                                    enter="transition ease-out duration-100"
+                                    enterFrom="transform opacity-0 scale-95"
+                                    enterTo="transform opacity-100 scale-100"
+                                    leave="transition ease-in duration-75"
+                                    leaveFrom="transform opacity-100 scale-100"
+                                    leaveTo="transform opacity-0 scale-95"
                                   >
-                                    <div className="py-1">
-                                      <Menu.Item>
-                                        {({ active }) => (
-                                          <Link href="/">
-                                            <span
-                                              className={classNames(
-                                                active
-                                                  ? "bg-gray-100 "
-                                                  : "text-gray-700",
-                                                "flex px-4 py-2 text-sm"
-                                              )}
-                                            >
-                                              <StarIcon
-                                                className="mr-3 h-5 w-5"
-                                                aria-hidden="true"
-                                              />
-                                              <span>Add to favorites</span>
-                                            </span>
-                                          </Link>
-                                        )}
-                                      </Menu.Item>
-                                      <Menu.Item>
-                                        {({ active }) => (
-                                          <Link href="/">
-                                            <span
-                                              className={classNames(
-                                                active
-                                                  ? "bg-gray-100 text-gray-300"
-                                                  : "text-gray-700",
-                                                "flex px-4 py-2 text-sm"
-                                              )}
-                                            >
-                                              <CodeIcon
-                                                className="mr-3 h-5 w-5 "
-                                                aria-hidden="true"
-                                              />
-                                              <span>Embed</span>
-                                            </span>
-                                          </Link>
-                                        )}
-                                      </Menu.Item>
-                                      <Menu.Item>
-                                        {({ active }) => (
-                                          <Link href="/">
-                                            <span
-                                              className={classNames(
-                                                active
-                                                  ? "bg-gray-100 text-gray-900"
-                                                  : "text-gray-700",
-                                                "flex px-4 py-2 text-sm"
-                                              )}
-                                            >
-                                              <FlagIcon
-                                                className="mr-3 h-5 w-5"
-                                                aria-hidden="true"
-                                              />
-                                              <span>Report content</span>
-                                            </span>
-                                          </Link>
-                                        )}
-                                      </Menu.Item>
-                                    </div>
-                                  </Menu.Items>
-                                </Transition>
-                              </Menu>
+                                    <Menu.Items
+                                      className={`origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-${
+                                        isDark ? "rose-500" : "white"
+                                      } ring-1 ring-black ring-opacity-5 focus:outline-none`}
+                                    >
+                                      <div className="py-1">
+                                        <Menu.Item>
+                                          {({ active }) => (
+                                            <Link href="/">
+                                              <span
+                                                className={classNames(
+                                                  active
+                                                    ? "bg-gray-100 "
+                                                    : "text-gray-700",
+                                                  "flex px-4 py-2 text-sm"
+                                                )}
+                                              >
+                                                <StarIcon
+                                                  className="mr-3 h-5 w-5"
+                                                  aria-hidden="true"
+                                                />
+                                                <span>Add to favorites</span>
+                                              </span>
+                                            </Link>
+                                          )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                          {({ active }) => (
+                                            <Link href="/">
+                                              <span
+                                                className={classNames(
+                                                  active
+                                                    ? "bg-gray-100 text-gray-300"
+                                                    : "text-gray-700",
+                                                  "flex px-4 py-2 text-sm"
+                                                )}
+                                              >
+                                                <CodeIcon
+                                                  className="mr-3 h-5 w-5 "
+                                                  aria-hidden="true"
+                                                />
+                                                <span>Embed</span>
+                                              </span>
+                                            </Link>
+                                          )}
+                                        </Menu.Item>
+                                        <Menu.Item>
+                                          {({ active }) => (
+                                            <Link href="/">
+                                              <span
+                                                className={classNames(
+                                                  active
+                                                    ? "bg-gray-100 text-gray-900"
+                                                    : "text-gray-700",
+                                                  "flex px-4 py-2 text-sm"
+                                                )}
+                                              >
+                                                <FlagIcon
+                                                  className="mr-3 h-5 w-5"
+                                                  aria-hidden="true"
+                                                />
+                                                <span>Report content</span>
+                                              </span>
+                                            </Link>
+                                          )}
+                                        </Menu.Item>
+                                      </div>
+                                    </Menu.Items>
+                                  </Transition>
+                                </Menu>
+                              </div>
+                            </div>
+                            <h2
+                              id={"update-title-" + update.id}
+                              className="mt-4 text-base font-medium"
+                            >
+                              {update.title}
+                            </h2>
+                          </div>
+                          <div
+                            className="mt-2 text-sm space-y-4"
+                            dangerouslySetInnerHTML={{ __html: update.body }}
+                          />
+                          <div className="mt-6 flex justify-between space-x-8">
+                            <div className="flex space-x-6">
+                              <span className="inline-flex items-center text-sm">
+                                <button
+                                  type="button"
+                                  className="inline-flex space-x-2 text-rose-400 hover:text-rose-500"
+                                >
+                                  <ThumbUpIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="font-medium">
+                                    {update.likes}
+                                  </span>
+                                  <span className="sr-only">likes</span>
+                                </button>
+                              </span>
+                              <span className="inline-flex items-center text-sm">
+                                <button
+                                  type="button"
+                                  className="inline-flex space-x-2  hover:text-rose-500"
+                                >
+                                  <ChatAltIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="font-medium">
+                                    {update.replies}
+                                  </span>
+                                  <span className="sr-only">replies</span>
+                                </button>
+                              </span>
+                              <span className="inline-flex items-center text-sm">
+                                <button
+                                  type="button"
+                                  className="inline-flex space-x-2  hover:text-rose-500"
+                                >
+                                  <EyeIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="font-medium ">
+                                    {update.views}
+                                  </span>
+                                  <span className="sr-only">views</span>
+                                </button>
+                              </span>
+                            </div>
+                            <div className="flex text-sm">
+                              <span className="inline-flex items-center text-sm">
+                                <button
+                                  type="button"
+                                  className="inline-flex space-x-2 hover:text-rose-500"
+                                >
+                                  <ShareIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                  <span className="font-medium ">Share</span>
+                                </button>
+                              </span>
                             </div>
                           </div>
-                          <h2
-                            id={"update-title-" + update.id}
-                            className="mt-4 text-base font-medium"
-                          >
-                            {update.title}
-                          </h2>
-                        </div>
-                        <div
-                          className="mt-2 text-sm space-y-4"
-                          dangerouslySetInnerHTML={{ __html: update.body }}
-                        />
-                        <div className="mt-6 flex justify-between space-x-8">
-                          <div className="flex space-x-6">
-                            <span className="inline-flex items-center text-sm">
-                              <button
-                                type="button"
-                                className="inline-flex space-x-2 text-gray-400 hover:text-gray-500"
-                              >
-                                <ThumbUpIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                                <span className="font-medium">
-                                  {update.likes}
-                                </span>
-                                <span className="sr-only">likes</span>
-                              </button>
-                            </span>
-                            <span className="inline-flex items-center text-sm">
-                              <button
-                                type="button"
-                                className="inline-flex space-x-2  hover:text-gray-500"
-                              >
-                                <ChatAltIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                                <span className="font-medium">
-                                  {update.replies}
-                                </span>
-                                <span className="sr-only">replies</span>
-                              </button>
-                            </span>
-                            <span className="inline-flex items-center text-sm">
-                              <button
-                                type="button"
-                                className="inline-flex space-x-2  hover:text-gray-500"
-                              >
-                                <EyeIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                                <span className="font-medium ">
-                                  {update.views}
-                                </span>
-                                <span className="sr-only">views</span>
-                              </button>
-                            </span>
-                          </div>
-                          <div className="flex text-sm">
-                            <span className="inline-flex items-center text-sm">
-                              <button
-                                type="button"
-                                className="inline-flex space-x-2 hover:text-gray-500"
-                              >
-                                <ShareIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                                <span className="font-medium ">Share</span>
-                              </button>
-                            </span>
-                          </div>
-                        </div>
-                      </article>
-                    </li>
+                        </article>
+                      </li>
+                    </Card>
                   ))}
                 </ul>
               </div>
@@ -548,12 +551,14 @@ export default function CommunityPageComponent() {
                           </div>
                           <div className="mt-6">
                             <Link href="/">
-                              <span
-                                href="#"
-                                className="w-full block text-center px-4 py-2 border hover:text-white shadow-sm text-sm font-medium rounded-md  bg-rose-300 hover:bg-rose-600 cursor-pointer transition duration-300 "
+                              <Button
+                                color="error"
+                                shadow
+                                icon={<Heart2 set="bold" primaryColor="white"/>}                                
+                                css={{ margin: "auto", w: "100%" }}
                               >
-                                View all
-                              </span>
+                                Wanna Follow them ?
+                              </Button>
                             </Link>
                           </div>
                         </div>
@@ -609,14 +614,17 @@ export default function CommunityPageComponent() {
                           </ul>
                         </div>
 
-                        <div className="mt-6">
+                        <div className="mt-4">
                           <Link href="/">
-                            <button
-                              className="w-full block text-center px-4 py-2 shadow-sm text-sm cursor-pointer font-medium rounded-md text-rose-700 hover:text-white
-                              transition duration-200 bg-white hover:bg-rose-400"
+                            <Button
+                              bordered
+                              color="error"
+                              shadow
+                              ghost
+                              css={{ margin: "auto", w: "100%" }}
                             >
                               View all
-                            </button>
+                            </Button>
                           </Link>
                         </div>
                       </div>
