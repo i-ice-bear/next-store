@@ -5,6 +5,8 @@ import { motion } from "framer-motion";
 import FooterComponent from "./components/Footnote/Footer";
 import ProductListComponent from "./components/Product-lists/ProductList";
 import ShirtAndTees from "./components/Product-lists/Collection/ShirtAndTees";
+import GalleryComponent from "./components/User-utility/Gallery";
+import PromoComponent from "./components/Promos/Promo";
 
 export default function HomePage() {
   return (
@@ -119,8 +121,14 @@ export default function HomePage() {
             <DesignerBanners />
           </motion.div>
         </div>
+        <div className="promo-component">
+          <PromoComponent />
+        </div>
         <div className="product-list">
           <ProductListComponent />
+        </div>
+        <div className="gallery-component">
+          <GalleryComponent />
         </div>
         <div className="shirts-and-tees">
           <ShirtAndTees />
@@ -130,6 +138,7 @@ export default function HomePage() {
             <FooterComponent />
           </motion.footer>
         </div>
+        
       </div>
     </>
   );
