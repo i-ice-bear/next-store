@@ -45,8 +45,8 @@ const communities = [
 
 const tabs = [
   { name: "From officials", href: "#", current: true },
+  { name: "New Fashion ideas", href: "./components/Ideas", current: false },
   { name: "Most Liked", href: "./components/MostLiked", current: false },
-  { name: "New Fashion ideas", href: "#", current: false },
 ];
 
 //+ updates connector
