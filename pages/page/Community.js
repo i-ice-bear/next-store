@@ -5,7 +5,7 @@ import { MdVerified } from "react-icons/md";
 import { Text } from "@nextui-org/react";
 import { useTheme } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
-
+import { ChevronRightIcon } from "@heroicons/react/solid";
 import {
   ChatAltIcon,
   CodeIcon,
@@ -191,18 +191,45 @@ export default function CommunityPageComponent() {
             <main className="lg:col-span-9 xl:col-span-6">
               <div className="px-4 sm:px-0">
                 <div className="sm:hidden">
-                  <label htmlFor="update-tabs" className="sr-only">
-                    Select a tab
-                  </label>
-                  <select
-                    id="update-tabs"
-                    className="block w-full rounded-md border-gray-300 text-base font-medium text-gray-900 shadow-sm focus:border-rose-500 focus:ring-rose-500"
-                    defaultValue={tabs.find((tab) => tab.current)}
-                  >
-                    {tabs.map((tab) => (
-                      <option key={tab.name}>{tab.name}</option>
-                    ))}
-                  </select>
+                  <nav className="flex" aria-label="Breadcrumb">
+                    <ul role="list" className="flex items-center space-x-4">
+                      <li>
+                        <div>
+                          <Link href="/">
+                          <span
+                            className=" hover:text-rose-500"
+                          >
+                            <HomeIcon
+                              className="flex-shrink-0 cursor-pointer h-5 w-5"
+                              aria-hidden="true"
+                            />
+                            <span className="sr-only">Home</span>
+                          </span>
+                          </Link>
+                        </div>
+                      </li>
+
+                      {tabs.map((page) => (
+                        <li key={page.name}>
+                          <div className="flex items-center">
+                            <ChevronRightIcon
+                              className="flex-shrink-0 h-5 w-5 text-rose-400"
+                              aria-hidden="true"
+                            />
+
+                            <Link href={page.href}>
+                              <span
+                                className="ml-4 text-sm cursor-pointer font-medium text-rose-500 hover:text-rose-700"
+                                aria-current={page.current ? "page" : undefined}
+                              >
+                                {page.name}
+                              </span>
+                            </Link>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
                 </div>
                 <div className="hidden sm:block">
                   <nav
@@ -537,65 +564,62 @@ export default function CommunityPageComponent() {
                 <section aria-labelledby="trending-heading">
                   <div className="rounded-lg shadow">
                     <Card isHoverable variant="bordered">
-                        
-                        <div className="p-6">
-                          <h2
-                            id="trending-heading"
-                            className="text-base font-medium"
+                      <div className="p-6">
+                        <h2
+                          id="trending-heading"
+                          className="text-base font-medium"
+                        >
+                          Trending
+                        </h2>
+                        <div className="mt-6 flow-root">
+                          <ul
+                            role="list"
+                            className="-my-4 divide-y divide-gray-200"
                           >
-                            Trending
-                          </h2>
-                          <div className="mt-6 flow-root">
-                            <ul
-                              role="list"
-                              className="-my-4 divide-y divide-gray-200"
-                            >
-                              {trendingPosts.map((post) => (
-                                <li
-                                  key={post.id}
-                                  className="flex py-4 space-x-3"
-                                >
-                                  <div className="flex-shrink-0">
-                                    <img
-                                      className="h-8 w-8 rounded-full"
-                                      src={post.user.imageUrl}
-                                      alt={post.user.name}
-                                    />
+                            {trendingPosts.map((post) => (
+                              <li key={post.id} className="flex py-4 space-x-3">
+                                <div className="flex-shrink-0">
+                                  <img
+                                    className="h-8 w-8 rounded-full"
+                                    src={post.user.imageUrl}
+                                    alt={post.user.name}
+                                  />
+                                </div>
+                                <div className="min-w-0 flex-1">
+                                  <p className="text-sm">{post.body}</p>
+                                  <div className="mt-2 flex">
+                                    <span className="inline-flex items-center text-sm">
+                                      <button
+                                        type="button"
+                                        className="inline-flex space-x-2  hover:text-rose-500"
+                                      >
+                                        <ChatAltIcon
+                                          className="h-5 w-5"
+                                          aria-hidden="true"
+                                        />
+                                        <span className="font-medium">
+                                          {post.comments}
+                                        </span>
+                                      </button>
+                                    </span>
                                   </div>
-                                  <div className="min-w-0 flex-1">
-                                    <p className="text-sm">{post.body}</p>
-                                    <div className="mt-2 flex">
-                                      <span className="inline-flex items-center text-sm">
-                                        <button
-                                          type="button"
-                                          className="inline-flex space-x-2  hover:text-rose-500"
-                                          >
-                                          <ChatAltIcon
-                                            className="h-5 w-5"
-                                            aria-hidden="true"
-                                          />
-                                          <span className="font-medium">
-                                            {post.comments}
-                                          </span>
-                                        </button>
-                                      </span>
-                                    </div>
-                                  </div>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                            
-                          <div className="mt-6">
-                            <Link href="/">
-                              <button className="w-full block text-center px-4 py-2 shadow-sm text-sm cursor-pointer font-medium rounded-md text-rose-700 hover:text-white
-                              transition duration-200 bg-white hover:bg-rose-400">
-                                View all
-                              </button>
-                            </Link>
-                          </div>
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
                         </div>
 
+                        <div className="mt-6">
+                          <Link href="/">
+                            <button
+                              className="w-full block text-center px-4 py-2 shadow-sm text-sm cursor-pointer font-medium rounded-md text-rose-700 hover:text-white
+                              transition duration-200 bg-white hover:bg-rose-400"
+                            >
+                              View all
+                            </button>
+                          </Link>
+                        </div>
+                      </div>
                     </Card>
                   </div>
                 </section>

@@ -13,6 +13,7 @@ import {
   EyeIcon,
   FlagIcon,
   PlusSmIcon,
+  ChevronRightIcon,
   ShareIcon,
   StarIcon,
   ThumbUpIcon,
@@ -44,8 +45,8 @@ const communities = [
 ];
 
 const tabs = [
-  { name: "From officials", href: "../Community", current: true },
-  { name: "New Fashion ideas", href: "#", current: false },
+  { name: "From officials", href: "../Community", current: false },
+  { name: "New Fashion ideas", href: "#", current: true },
   { name: "Most Liked", href: "./MostLiked", current: false },
 ];
 
@@ -190,20 +191,47 @@ export default function IdeasPageComponent() {
             </div>
             <main className="lg:col-span-9 xl:col-span-6">
               <div className="px-4 sm:px-0">
-                <div className="sm:hidden">
-                  <label htmlFor="update-tabs" className="sr-only">
-                    Select a tab
-                  </label>
-                  <select
-                    id="update-tabs"
-                    className="block w-full rounded-md border-gray-300 text-base font-medium text-gray-900 shadow-sm focus:border-rose-500 focus:ring-rose-500"
-                    defaultValue={tabs.find((tab) => tab.current)}
-                  >
-                    {tabs.map((tab) => (
-                      <option key={tab.name}>{tab.name}</option>
-                    ))}
-                  </select>
+                 <div className="sm:hidden">
+                 <nav className="flex" aria-label="Breadcrumb">
+                    <ul role="list" className="flex items-center space-x-4">
+                      <li>
+                        <div>
+                          <Link href="/">
+                          <span
+                            className=" hover:text-rose-500"
+                          >
+                            <HomeIcon
+                              className="flex-shrink-0 cursor-pointer h-5 w-5"
+                              aria-hidden="true"
+                            />
+                            <span className="sr-only">Home</span>
+                          </span>
+                          </Link>
+                        </div>
+                      </li>
+                      {tabs.map((page) => (
+                        <li key={page.name}>
+                          <div className="flex items-center">
+                            <ChevronRightIcon
+                              className="flex-shrink-0 h-5 w-5 text-rose-400"
+                              aria-hidden="true"
+                            />
+
+                            <Link href={page.href}>
+                              <span
+                                className="ml-4 text-sm cursor-pointer font-medium text-rose-500 hover:text-rose-700"
+                                aria-current={page.current ? "page" : undefined}
+                              >
+                                {page.name}
+                              </span>
+                            </Link>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </nav>
                 </div>
+
                 <div className="hidden sm:block">
                   <nav
                     className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
