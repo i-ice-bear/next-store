@@ -109,7 +109,7 @@ export default function ReviewIncentive() {
           <div className="mt-10">
             <h3 className="text-lg font-medium ">Share your thoughts</h3>
             <h6 className="mt-1 text-sm -600">
-              If you're used this product, share your thoughts with other
+              If you are used this product, share your thoughts with other
               customers
             </h6>
 

@@ -39,7 +39,7 @@ const offers = [
                       Focus on what matters
                     </h1>
                     <h6 className="mt-4 text-xl">
-                      All the charts, datepickers, and notifications in the world can't beat checking off some items on a
+                      All the charts, datepickers, and notifications in the world cannot beat checking off some items on a
                       paper card.
                     </h6>
                     <div className="mt-6">

@@ -295,9 +295,8 @@ export default function CommunityPageComponent() {
                 <h1 className="sr-only">Recent updates</h1>
                 <ul role="list" className="space-y-4">
                   {updates.map((update) => (
-                    <Card shadow variant="bordered" isHoverable>
+                    <Card shadow variant="bordered" key={update.id} isHoverable>
                       <li
-                        key={update.id}
                         className="px-4 py-6 sm:p-6 sm:rounded-lg"
                       >
                         <article aria-labelledby={"update-title-" + update.id}>
