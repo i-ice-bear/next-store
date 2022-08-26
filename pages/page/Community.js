@@ -2,10 +2,10 @@ import React from "react";
 import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { MdVerified } from "react-icons/md";
-import { Button, Text } from "@nextui-org/react";
+import { Button, Text, Tooltip } from "@nextui-org/react";
 import { useTheme } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
-import {  ChevronRightIcon, } from "@heroicons/react/solid";
+import {  ChevronRightIcon, ColorSwatchIcon, } from "@heroicons/react/solid";
 import { Heart2 } from "react-iconly";
 
 import {
@@ -28,11 +28,13 @@ import {
 import Link from "next/link";
 
 
+
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
   { name: "Popular", href: "#", icon: FireIcon, current: false },
   { name: "Communities", href: "#", icon: UserGroupIcon, current: false },
   { name: "Trending", href: "#", icon: TrendingUpIcon, current: false },
+  { name: "Fashion Ideas", href: "#", icon: ColorSwatchIcon, current: false },
 ];
 
 const communities = [
@@ -95,6 +97,27 @@ const updates = [
       <h6>Just wait and watch</h6>
     `,
   },
+  {
+    id: "81614",
+    likes: "29",
+    replies: "11",
+    views: "2.7k",
+    author: {
+      name: "Derek Brownie",
+      imageUrl: "/images/util/header-img.jpg",
+      href: "/",
+    },
+    date: "February 1 at 11:43 PM",
+    datetime: "2022-8-09T11:43:00",
+    href: "#",
+    title:
+      "We're heading towards to accomplish an innovative idea for connecting AI and Fashion designing.",
+    body: `
+      <h6 className="font-medium">During old days, we all know that clothes are prepared by hands which is such a very big amount of timewaste because, to connecting the various grids by thread with a very thin needle. But, now time is changed and now clothes are manufacturing by machines quickly.</h6>
+      <h6>But, now we decided to do something new from others and innovative also. We're going to use Artificial intelligence and machine learning for our fashion designs;</h6>
+      <h6>Just wait and watch</h6>
+    `,
+  },
 ];
 const whoToFollow = [
   {
@@ -139,7 +162,7 @@ export default function CommunityPageComponent() {
                 aria-label="Sidebar"
                 className="sticky top-4 divide-y divide-gray-300"
               >
-                <div className="pb-8 space-y-1">
+                <div className="pb-8 space-y-4">
                   {navigation.map((item) => (
                     <Link key={item.name} href={item.href}>
                       <span
@@ -147,7 +170,7 @@ export default function CommunityPageComponent() {
                           item.current
                             ? "bg-rose-500 text-white transition ease-in-out duration-300 cursor-pointer"
                             : " hover:bg-rose-500 transition-all cursor-pointer",
-                          "group flex items-center px-4 py-2 transition-all text-sm cursor-pointer font-medium rounded-md"
+                          "group flex items-center px-4 py-2 transition-all text-sm cursor-pointer font-medium rounded-xl"
                         )}
                         aria-current={item.current ? "page" : undefined}
                       >
@@ -155,7 +178,7 @@ export default function CommunityPageComponent() {
                           className={classNames(
                             item.current
                               ? "text-white"
-                              : "group-hover:text-rose-200",
+                              : "group-hover:text-white text-rose-600",
                             "flex-shrink-0 -ml-1 mr-3 h-6 w-6"
                           )}
                           aria-hidden="true"
@@ -493,14 +516,14 @@ export default function CommunityPageComponent() {
                   <Card isHoverable variant="bordered">
                     <Card.Body>
                       <div className="rounded-lg">
-                        <div className="p-6">
+                        <div className="p-2">
                           <h2
                             id="who-to-follow-heading"
                             className="text-base font-medium"
                           >
                             Who to follow
                           </h2>
-                          <div className="mt-6 flow-root">
+                          <div className="mt-4 flow-root">
                             <ul role="list" className="-my-4 divide-y">
                               {whoToFollow.map((user) => (
                                 <li
@@ -551,13 +574,16 @@ export default function CommunityPageComponent() {
                           </div>
                           <div className="mt-6">
                             <Link href="/">
+
                               <Button
                                 color="error"
                                 shadow
                                 icon={<Heart2 set="bold" primaryColor="white"/>}                                
                                 css={{ margin: "auto", w: "100%" }}
-                              >
-                                Wanna Follow them ?
+                                >
+                              <Tooltip content="View the data" color="error">
+                                Click to view more peoples
+                                </Tooltip>
                               </Button>
                             </Link>
                           </div>
