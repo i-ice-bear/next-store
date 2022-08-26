@@ -11,6 +11,7 @@ import ModalComponent from "../components/Modal/Modal";
 import { useTheme as useNextTheme } from "next-themes";
 import { Switch, Text, useTheme } from "@nextui-org/react";
 import TailwindSwitchComponent from "../components/Switch/TailwindSwitch";
+import SideMenuCaret from "../components/User-utility/Sidenav";
 
 const navigation = {
   categories: [
@@ -569,16 +570,7 @@ export default function NavbarComponent() {
                 </div>
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                  <span href="#" className="group -m-2 p-2 flex items-center">
-                    <ShoppingBagIcon
-                      className="flex-shrink-0 h-6 w-6 text-gray-400 group-transition   hover:text-gray-500"
-                      aria-hidden="true"
-                    />
-                    <span className="ml-2 text-sm font-medium  group-transition   hover:text-rose-700">
-                      0
-                    </span>
-                    <span className="sr-only">items in cart, view bag</span>
-                  </span>
+                 <SideMenuCaret isDark={isDark}/>
                 </div>
               </div>
             </div>
