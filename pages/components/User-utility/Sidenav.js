@@ -1,17 +1,27 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { HeartIcon, ShoppingCartIcon, XIcon } from "@heroicons/react/outline";
+import {
+  ArrowRightIcon,
+  BackspaceIcon,
+  HeartIcon,
+  MinusIcon,
+  ShoppingCartIcon,
+  XIcon,
+} from "@heroicons/react/outline";
 import {
   PencilIcon,
   PlusSmIcon,
   ShoppingBagIcon,
 } from "@heroicons/react/solid";
 import { Button } from "@nextui-org/react";
-import { Buy, Wallet } from "react-iconly";
+import { Buy, Plus, Wallet } from "react-iconly";
 
 export default function SideMenuCaret(props) {
   const [open, setOpen] = useState(false);
-
+  const [countProduct, setCountProduct] = useState(1);
+  const changeHandle = (e)=>{
+    countProduct(e.target.value)
+  }
   return (
     <>
       <span
@@ -29,6 +39,7 @@ export default function SideMenuCaret(props) {
         </span>
         <span className="sr-only">items in cart, view bag</span>
       </span>
+
       <Transition.Root show={open} as={Fragment}>
         <Dialog
           as="div"
@@ -84,6 +95,9 @@ export default function SideMenuCaret(props) {
                       props.isDark ? "bg-black" : "bg-white"
                     } p-8`}
                   >
+                    <div className="teaserBanner">
+                      <h3 className="text-md text-rose-600">Your cart</h3>
+                    </div>
                     <div className="space-y-6 pb-16">
                       <div>
                         <div className="aspect-w-10 aspect-h-7 block w-full overflow-hidden rounded-lg">
@@ -100,12 +114,12 @@ export default function SideMenuCaret(props) {
                               Product title will goes here
                             </h2>
                             <p className="text-sm font-medium text-ros-500">
-                                publisher name goes here
+                              publisher name goes here
                             </p>
                           </div>
                           <button
                             type="button"
-                            className="ml-4 flex h-8 w-8 items-center justify-center rounded-full bg-rose-400 text-ros-400 hover:bg-gray-100 hover:text-ros-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
+                            className="ml-4 flex h-8 w-8 items-center justify-center rounded-full bg-rose-400 text-ros-400 hover:bg-rose-800 hover:text-ros-500 focus:outline-none focus:ring-2 focus:ring-rose-500"
                           >
                             <HeartIcon className="h-6 w-6" aria-hidden="true" />
                             <span className="sr-only">Favorite</span>
@@ -116,14 +130,16 @@ export default function SideMenuCaret(props) {
                         <h3 className="font-medium text-ros-900">
                           Information
                         </h3>
-                        <dl className="mt-2 divide-y divide-gray-200 border-t border-b border-gray-200">
+                        <dl className="mt-2">
                           <div className="flex justify-between py-3 text-sm font-medium">
-                            <dt className="text-ros-500">Uploaded by</dt>
-                            <dd className="text-ros-900">Marie Culver</dd>
+                            <dt className="text-ros-500">Quantity</dt>
+                            <dd className="text-ros-900">{countProduct}</dd>
                           </div>
                           <div className="flex justify-between py-3 text-sm font-medium">
-                            <dt className="text-ros-500">Created</dt>
-                            <dd className="text-ros-900">June 8, 2020</dd>
+                            <dt className="">Address :</dt>
+                            <dd className="bg-red-600 w-40 text-end">
+                              Block - Z Helwett peckard valley
+                            </dd>
                           </div>
                           <div className="flex justify-between py-3 text-sm font-medium">
                             <dt className="text-ros-500">Last modified</dt>
@@ -140,9 +156,38 @@ export default function SideMenuCaret(props) {
                         </dl>
                       </div>
                       <div>
+                        <div className="flex justify-between py-3 text-sm font-medium">
+                          <dt className="text-ros-500">Quantity</dt>
+                          <dd className="text-ros-900">{countProduct}</dd>
+                        </div>
+                        <div className="flex mb-10">
+                          <Button
+                            auto
+                            className="mx-3"
+                            icon={<Plus />}
+                            color="success"
+                            shadow
+                            onChange={changeHandle}
+                            onClick={() => {
+                              setCountProduct(+1);
+                            }}
+                          ></Button>
+                          <Button
+                            auto
+                            color="error"
+                            shadow
+                            onChange={changeHandle}
+                            onClick={() => {
+                              setCountProduct(-1);
+                            }}
+                          >
+                            Subtract more
+                          </Button>
+                        </div>
                         <h3 className="font-medium text-ros-900">
                           Description
                         </h3>
+
                         <div className="mt-2 flex items-center justify-between">
                           <p className="text-sm italic text-ros-500">
                             Add a description to this image.
@@ -231,7 +276,6 @@ export default function SideMenuCaret(props) {
                           css={{ margin: "auto", position: "relative", top: 6 }}
                           icon={<Buy />}
                           size={"lg"}
-
                         >
                           Add to cart{" "}
                         </Button>
