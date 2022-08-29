@@ -1,27 +1,17 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import {
-  ArrowRightIcon,
-  BackspaceIcon,
-  HeartIcon,
-  MinusIcon,
-  ShoppingCartIcon,
-  XIcon,
-} from "@heroicons/react/outline";
-import {
-  PencilIcon,
-  PlusSmIcon,
-  ShoppingBagIcon,
-} from "@heroicons/react/solid";
-import { Button } from "@nextui-org/react";
-import { Buy, Plus, Wallet } from "react-iconly";
+import { HeartIcon, XIcon } from "@heroicons/react/outline";
+import { PencilIcon } from "@heroicons/react/solid";
+import { Button, Badge } from "@nextui-org/react";
+import { Buy, PaperNegative, PaperPlus } from "react-iconly";
 
 export default function SideMenuCaret(props) {
   const [open, setOpen] = useState(false);
-  const [countProduct, setCountProduct] = useState(1);
-  const changeHandle = (e)=>{
-    countProduct(e.target.value)
-  }
+  const [countProduct, setCountProduct] = useState(0);
+  const changeHandle = (e) => {
+    countProduct(e.target.value);
+  };
+
   return (
     <>
       <span
@@ -30,12 +20,18 @@ export default function SideMenuCaret(props) {
         }}
         className="group -m-2 p-2 cursor-pointer flex items-center"
       >
-        <ShoppingBagIcon
+        {/* <ShoppingBagIcon
           className="flex-shrink-0 h-6 w-6 text-ros-400 group-transition   hover:text-ros-500"
           aria-hidden="true"
         />
         <span className="ml-2 text-sm font-medium  group-transition   hover:text-rose-700">
-          0
+          {countProduct}
+        </span> */}
+
+        <span className="-z-3">
+          <Badge color="error" content={countProduct} shape="circle">
+            <Buy fill="currentColor" size={30} />
+          </Badge>
         </span>
         <span className="sr-only">items in cart, view bag</span>
       </span>
@@ -46,7 +42,7 @@ export default function SideMenuCaret(props) {
           className="fixed inset-0 overflow-hidden"
           onClose={setOpen}
         >
-          <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute z-10 inset-0 overflow-hidden ">
             <Transition.Child
               as={Fragment}
               enter="ease-in-out duration-500"
@@ -91,7 +87,7 @@ export default function SideMenuCaret(props) {
                   </Transition.Child>
 
                   <div
-                    className={`h-full overflow-y-auto ${
+                    className={`h-full z-10 overflow-y-auto ${
                       props.isDark ? "bg-black" : "bg-white"
                     } p-8`}
                   >
@@ -137,7 +133,7 @@ export default function SideMenuCaret(props) {
                           </div>
                           <div className="flex justify-between py-3 text-sm font-medium">
                             <dt className="">Address :</dt>
-                            <dd className="bg-red-600 w-40 text-end">
+                            <dd className="w-40 text-end">
                               Block - Z Helwett peckard valley
                             </dd>
                           </div>
@@ -164,24 +160,27 @@ export default function SideMenuCaret(props) {
                           <Button
                             auto
                             className="mx-3"
-                            icon={<Plus />}
+                            icon={<PaperPlus />}
                             color="success"
                             shadow
                             onChange={changeHandle}
                             onClick={() => {
-                              setCountProduct(+1);
+                              setCountProduct(countProduct + 1);
                             }}
-                          ></Button>
+                          >
+                            Add
+                          </Button>
                           <Button
                             auto
                             color="error"
                             shadow
+                            icon={<PaperNegative />}
                             onChange={changeHandle}
                             onClick={() => {
-                              setCountProduct(-1);
+                              setCountProduct(countProduct - 1);
                             }}
                           >
-                            Subtract more
+                            Remove
                           </Button>
                         </div>
                         <h3 className="font-medium text-ros-900">
@@ -189,8 +188,8 @@ export default function SideMenuCaret(props) {
                         </h3>
 
                         <div className="mt-2 flex items-center justify-between">
-                          <p className="text-sm italic text-ros-500">
-                            Add a description to this image.
+                          <p className="text-sm text-ros-500">
+                            Description will gose here
                           </p>
                           <button
                             type="button"
@@ -204,71 +203,7 @@ export default function SideMenuCaret(props) {
                           </button>
                         </div>
                       </div>
-                      <div>
-                        <h3 className="font-medium text-ros-900">
-                          Shared with
-                        </h3>
-                        <ul
-                          role="list"
-                          className="mt-2 divide-y divide-gray-200 border-t border-b border-gray-200"
-                        >
-                          <li className="flex items-center justify-between py-3">
-                            <div className="flex items-center">
-                              <img
-                                src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=1024&h=1024&q=80"
-                                alt=""
-                                className="h-8 w-8 rounded-full"
-                              />
-                              <p className="ml-4 text-sm font-medium text-ros-900">
-                                Aimee Douglas
-                              </p>
-                            </div>
-                            <button
-                              type="button"
-                              className="ml-6 rounded-md bg-white text-sm font-medium text-rose-600 hover:text-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2"
-                            >
-                              Remove
-                              <span className="sr-only"> Aimee Douglas</span>
-                            </button>
-                          </li>
-                          <li className="flex items-center justify-between py-3">
-                            <div className="flex items-center">
-                              <img
-                                src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixqx=oilqXxSqey&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                alt=""
-                                className="h-8 w-8 rounded-full"
-                              />
-                              <p className="ml-4 text-sm font-medium text-ros-900">
-                                Andrea McMillan
-                              </p>
-                            </div>
-                            <button
-                              type="button"
-                              className="ml-6 rounded-md text-sm font-medium text-rose-600 hover:text-rose-500 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-offset-2"
-                            >
-                              Remove
-                              <span className="sr-only"> Andrea McMillan</span>
-                            </button>
-                          </li>
-                          <li className="flex items-center justify-between py-2">
-                            <Button
-                              color="error"
-                              shadow
-                              css={{ width: "100%", marginTop: 5 }}
-                            >
-                              <span className="flex h-8 w-8 items-center justify-center rounded-full border-2 border-dashed border-gray-300 text-ros-400">
-                                <PlusSmIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                              </span>
-                              <span className="ml-4 text-sm font-medium text-black group-hover:text-rose-500">
-                                Share
-                              </span>
-                            </Button>
-                          </li>
-                        </ul>
-                      </div>
+
                       <div className="flex-3">
                         <Button
                           shadow
@@ -277,22 +212,7 @@ export default function SideMenuCaret(props) {
                           icon={<Buy />}
                           size={"lg"}
                         >
-                          Add to cart{" "}
-                        </Button>
-                        <Button
-                          shadow
-                          color="error"
-                          icon={<Wallet filled />}
-                          ghost
-                          size={"lg"}
-                          className="w-full"
-                          css={{
-                            margin: "auto",
-                            position: "relative",
-                            top: "2rem",
-                          }}
-                        >
-                          Buy now
+                          Buy now{" "}
                         </Button>
                       </div>
                     </div>

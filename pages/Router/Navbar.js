@@ -153,8 +153,11 @@ export default function NavbarComponent() {
   const [open, setOpen] = useState(false);
   const { setTheme } = useNextTheme();
   const { isDark, type } = useTheme();
+
   function darkModeToggle(e) {
     setTheme(e.target.checked ? "dark" : "light");
+    document.body.style.transition = "all 0.3s ease"
+
   }
   return (
     <div
@@ -341,9 +344,7 @@ export default function NavbarComponent() {
                       color="error"
                       className="my-10"
                       checked={isDark}
-                      onChange={(e) =>
-                        setTheme(e.target.checked ? "dark" : "light")
-                      }
+                     onChange={darkModeToggle}
                     />
                   </span>
                 </div>
@@ -380,7 +381,7 @@ export default function NavbarComponent() {
                     />
 
                     <p
-                      className="mx-3 
+                      className="mx-3 font-quicksand font-400
                     font-weighttransform-gpu"
                     >
                       Andy shoppe

@@ -7,6 +7,8 @@ import ProductListComponent from "./components/Product-lists/ProductList";
 import ShirtAndTees from "./components/Product-lists/Collection/ShirtAndTees";
 import GalleryComponent from "./components/User-utility/Gallery";
 import PromoComponent from "./components/Promos/Promo";
+import SendButton from "./components/Nextui-utilities/SendButton";
+import SendIcon from "./components/Nextui-utilities/SendIcon";
 
 export default function HomePage() {
   return (
@@ -47,6 +49,7 @@ export default function HomePage() {
                     className="block w-full py-3 p-5 text-base rounded-md placeholder-gray-500 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:flex-1 border-gray-300"
                     placeholder="Enter your email"
                   />
+
                   <button
                     type="submit"
                     className="mt-3 w-full px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-rose-700 shadow-sm hover:bg-rose-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto"
@@ -138,9 +141,7 @@ export default function HomePage() {
             <FooterComponent />
           </motion.footer>
         </div>
-        
       </div>
     </>
   );
 }
-
