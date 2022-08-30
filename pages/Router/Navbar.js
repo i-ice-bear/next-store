@@ -149,15 +149,15 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function NavbarComponent() {
+export default function NavbarComponent( props ) {
+  console.log(props.cart, props.subTotal, props.clearCart, props.removeFromCart, props.addToCart, props.saveCart);
   const [open, setOpen] = useState(false);
   const { setTheme } = useNextTheme();
   const { isDark, type } = useTheme();
 
   function darkModeToggle(e) {
     setTheme(e.target.checked ? "dark" : "light");
-    document.body.style.transition = "all 0.3s ease"
-
+    document.body.style.transition = "all 0.3s ease";
   }
   return (
     <div
@@ -344,7 +344,7 @@ export default function NavbarComponent() {
                       color="error"
                       className="my-10"
                       checked={isDark}
-                     onChange={darkModeToggle}
+                      onChange={darkModeToggle}
                     />
                   </span>
                 </div>
@@ -448,7 +448,6 @@ export default function NavbarComponent() {
                                               alt={item.imageAlt}
                                               className="object-center  rounded-2xl object-cover"
                                             />
-                                            
                                           </div>
                                           <Link href={item.href}>
                                             <span className="mt-6 block cursor-pointer font-medium ">
@@ -571,7 +570,10 @@ export default function NavbarComponent() {
                 </div>
                 {/* Cart */}
                 <div className="ml-4 flow-root lg:ml-6">
-                 <SideMenuCaret isDark={isDark}/>
+                  <SideMenuCaret
+                    isDark={isDark}
+                    
+                  />
                 </div>
               </div>
             </div>
