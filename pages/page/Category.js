@@ -194,18 +194,19 @@ const products2 = [
 export default function CategoryComponent() {
 
   return (
-    <div className="">
-      <div>
+    <div>
+      <br />
+      <div className="my-5">
         <main>
           <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8">
             <div className="py-24 text-center">
               <h1 className="text-4xl font-extrabold tracking-tight">New Arrivals</h1>
-              <h5 className="mt-4 max-w-3xl mx-auto text-base text-gray-500">
+              <h5 className="mt-4 max-w-3xl mx-auto text-base text-rose-500">
                 Thoughtfully designed objects for the workspace, home, and travel.
               </h5>
             </div>
 
-            <section aria-labelledby="filter-heading" className="border-t border-gray-200 pt-6">
+            <section aria-labelledby="filter-heading" className=" pt-6">
               <h2 id="filter-heading" className="sr-only">
                 Product filters
               </h2>
