@@ -105,7 +105,6 @@ export default function HomePage() {
             </div>
           </div>
         </main>
-
         <div className="Designer-banner">
           <motion.div
             initial={{

@@ -315,9 +315,6 @@ export default function NavbarComponent( props ) {
               </div>
               <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 <div className="flow-root">
-                  <span className="-m-2 p-2 block font-medium ">
-                    <ModalComponent text="Sign in" />
-                  </span>
                 </div>
                 <div className="flow-root">
                   <Link href={"../page/Login"}>
@@ -519,9 +516,7 @@ export default function NavbarComponent( props ) {
 
               <div className="ml-auto flex items-center">
                 <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6">
-                  <span className="text-sm cursor-pointer font-medium text-rose-700 transition   hover:text-rose-800">
-                    <ModalComponent text="Sign in" />
-                  </span>
+                  
                   <span
                     className="h-6 w-px cursor-pointer bg-gray-200"
                     aria-hidden="true"
