@@ -1,4 +1,3 @@
-// build-search.js
 const dotenv = require("dotenv");
 const algoliasearch = require("algoliasearch/lite");
 
