@@ -2,25 +2,33 @@ const products = [
   {
     id: 1,
     name: 'Zip Tote Basket',
-    color: 'White and black',
+    color: 'Available in White and black',
     href: '#',
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-02.jpg',
     imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
     price: '$140',
   },
   {
-    id: 1,
+    id: 2,
     name: 'Zip Tote Basket',
-    color: 'White and black',
+    color: 'Available in White, Pink and black',
     href: '#',
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/home-page-03-favorite-01.jpg',
     imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
     price: '$140',
   },
-  // More products...
+  {
+    id: 3,
+    name: 'Black premium T-shirt',
+    color: 'Available in White and black',
+    href: '#',
+    imageSrc: 'https://images.pexels.com/photos/1656684/pexels-photo-1656684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    imageAlt: 'Front of zip tote bag with white canvas, black canvas straps and handle, and black zipper pulls.',
+    price: '$140',
+  },
 ]
 
-export default function Example() {
+export default function ShirtAndTees() {
   return (
     <div className="">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -52,7 +60,7 @@ export default function Example() {
               <div className="mt-6">
                 <button
                   href={product.href}
-                  className="relative flex bg-rose-400 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium w-full transition duration-500 hover:bg-rose-600"
+                  className="relative flex bg-rose-600 border border-transparent rounded-md py-2 px-8 items-center justify-center text-sm font-medium w-full transition duration-500 hover:bg-rose-600"
                 >
                   Add to bag<span className="sr-only">, {product.name}</span>
                 </button>
