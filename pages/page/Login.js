@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 import { BsFacebook, BsGoogle, BsInstagram } from "react-icons/bs";
 import FooterComponent from "../components/Footnote/Footer";
@@ -102,7 +103,7 @@ const LoginComponent = () => {
                 {loginOptionMapping.map((item) => {
                   return (
                     <div key={item.icon}>
-                      <a
+                      <Link
                         key={item.icon}
                         href="/"
                         className="w-full inline-flex transition-all justify-center py-2 px-4 rounded-xl shadow-sm bg-rose-600 text-sm font-medium text-white hover:bg-rose-400"
@@ -111,7 +112,7 @@ const LoginComponent = () => {
                           <span className="sr-only">{item.spanText}</span>
                           <div>{item.icon}</div>
                         </div>
-                      </a>
+                      </Link>
                     </div>
                   );
                 })}
