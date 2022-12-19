@@ -7,8 +7,6 @@ import ProductListComponent from "./components/Product-lists/ProductList";
 import ShirtAndTees from "./components/Product-lists/Collection/ShirtAndTees";
 import GalleryComponent from "./components/User-utility/Gallery";
 import PromoComponent from "./components/Promos/Promo";
-import SendButton from "./components/Nextui-utilities/SendButton";
-import SendIcon from "./components/Nextui-utilities/SendIcon";
 
 export default function HomePage() {
   return (
@@ -21,7 +19,7 @@ export default function HomePage() {
               <h1>
                 <span className="block text-sm font-semibold uppercase tracking-wide text-gray-500 sm:text-base lg:text-sm xl:text-base">
                   <span className="inline-flex items-center px-3 py-0.5 rounded-full text-sm font-medium bg-pink-100 text-pink-800">
-                    The all new 🎇🎇🎇
+                    The all new 
                   </span>
                 </span>
                 <span className="mt-1 block text-4xl tracking-tight font-extrabold sm:text-5xl xl:text-6xl">

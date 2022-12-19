@@ -1,5 +1,5 @@
 
-import { Fragment, useState } from 'react'
+import { Fragment, useState, classNames } from 'react'
 import { Dialog, Disclosure, Menu, Popover, Tab, Transition } from '@headlessui/react'
 import { MenuIcon, QuestionMarkCircleIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon } from '@heroicons/react/solid'
@@ -214,7 +214,7 @@ export default function CategoryComponent() {
               <div className="flex items-center justify-between">
                 <Menu as="div" className="relative z-10 inline-block text-left">
                   <div>
-                    <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-rose-500">
+                    <Menu.Button className="group inline-flex justify-center text-sm text-rose-700 hover:text-rose-500">
                       Sort
                       <ChevronDownIcon
                         className="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
@@ -236,17 +236,12 @@ export default function CategoryComponent() {
                       <div className="py-1">
                         {sortOptions.map((option) => (
                           <Menu.Item key={option}>
-                            {({ active }) => (
                               <a
                                 href={option.href}
-                                className={classNames(
-                                  active ? 'bg-gray-100' : '',
-                                  'block px-4 py-2 text-sm font-medium text-rose-600'
-                                )}
+                                className="block px-4 py-2 text-sm font-bold text-rose-600"
                               >
                                 {option.name}
                               </a>
-                            )}
                           </Menu.Item>
                         ))}
                       </div>
