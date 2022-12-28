@@ -5,9 +5,8 @@ import { MdVerified } from "react-icons/md";
 import { Button, Text, Tooltip } from "@nextui-org/react";
 import { useTheme } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
-import {  ChevronRightIcon, ColorSwatchIcon, } from "@heroicons/react/solid";
+import { ChevronRightIcon, ColorSwatchIcon } from "@heroicons/react/solid";
 import { Heart2 } from "react-iconly";
-
 import {
   ChatAltIcon,
   CodeIcon,
@@ -26,8 +25,8 @@ import {
   UserGroupIcon,
 } from "@heroicons/react/outline";
 import Link from "next/link";
-
-
+import { AnimatePresence, motion } from "framer-motion";
+import Aos from "aos";
 
 const navigation = [
   { name: "Home", href: "#", icon: HomeIcon, current: true },
@@ -128,13 +127,21 @@ const whoToFollow = [
       "https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     aboutHim: "Lorem ipsum dolar sit amet colorado amet, ",
   },
+  {
+    name: "Tentacion",
+    handle: "Tentacion",
+    href: "/",
+    imageUrl:
+      "/images/Assets/tentacion.jpg",
+    aboutHim: "Lorem ipsum dolar sit amet colorado amet, ",
+  },
   // More people...
 ];
 const trendingPosts = [
   {
     id: 1,
     user: {
-      name: "Floyd Miles",
+      name: "Tentacion",
       imageUrl:
         "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     },
@@ -151,9 +158,16 @@ function classNames(...classes) {
 export default function CommunityPageComponent() {
   const { isDark, type } = useTheme();
 
+  React.useEffect(() => {
+    Aos.init({
+      duration: 3000,
+    });
+  }, []);
+
   return (
     <>
-      <div className="min-h-full">
+      <div className="min-h-full" data-aos="fade-up"
+     data-aos-duration="3000">
         <br />
         <div className="py-10 my-10">
           <div className="max-w-3xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-12 lg:gap-8">
@@ -214,7 +228,7 @@ export default function CommunityPageComponent() {
                 </div>
               </nav>
             </div>
-            <main className="lg:col-span-9 xl:col-span-6">
+            <main className="lg:col-span-9 xl:col-span-6" data-aos="fade-down">
               <div className="px-4 sm:px-0">
                 <div className="sm:hidden">
                   <nav className="flex" aria-label="Breadcrumb">
@@ -262,30 +276,38 @@ export default function CommunityPageComponent() {
                   >
                     {tabs.map((tab, tabIdx) => (
                       <Link key={tab.name} href={tab.href}>
-                        <span
-                          aria-current={tab.current ? "page" : undefined}
-                          className={classNames(
-                            tab.current
-                              ? " hover:text-white cursor-pointer bg-rose-500"
-                              : " hover:text-white cursor-pointer ",
-                            tabIdx === 0 ? "rounded-l-lg" : "",
-                            tabIdx === tabs.length - 1
-                              ? "hover:text-white rounded-r-lg"
-                              : " hover:text-white",
-                            "group relative min-w-0 flex-1 overflow-hidden py-4 px-6 text-sm font-medium text-center cursor-pointer transition duration-300 hover:bg-rose-500 hover:text-white focus:z-10"
-                          )}
-                        >
-                          <span>
-                            <p className="font-quicksand">{tab.name}</p>
-                          </span>
-                          <span
-                            aria-hidden="true"
+                          <motion.span
+                            initial={{ opacity: 0 }}
+                            exit={{ opacity: 0 }}
+                            animate={{
+                              opacity: 1,
+                              transition: {
+                                type: "tween",
+                              },
+                            }}
+                            aria-current={tab.current ? "page" : undefined}
                             className={classNames(
-                              tab.current ? "bg-rose-500" : "bg-transparent",
-                              "absolute inset-x-0 bottom-0 h-0.5"
+                              tab.current
+                                ? " hover:text-white cursor-pointer bg-rose-500"
+                                : " hover:text-white cursor-pointer ",
+                              tabIdx === 0 ? "rounded-l-lg" : "",
+                              tabIdx === tabs.length - 1
+                                ? "hover:text-white rounded-r-2xl"
+                                : " hover:text-white",
+                              "group relative min-w-0 flex-1 overflow-hidden py-4 px-6 text-sm font-medium text-center cursor-pointer transition duration-300 hover:bg-rose-500 hover:text-white focus:z-10"
                             )}
-                          />
-                        </span>
+                          >
+                            <span>
+                              <p className="font-quicksand">{tab.name}</p>
+                            </span>
+                            <span
+                              aria-hidden="true"
+                              className={classNames(
+                                tab.current ? "bg-rose-500" : "bg-transparent",
+                                "absolute inset-x-0 bottom-0 h-0.5"
+                              )}
+                            />
+                          </motion.span>
                       </Link>
                     ))}
                   </nav>
@@ -296,9 +318,7 @@ export default function CommunityPageComponent() {
                 <ul role="list" className="space-y-4">
                   {updates.map((update) => (
                     <Card shadow variant="bordered" key={update.id} isHoverable>
-                      <li
-                        className="px-4 py-6 sm:p-6 sm:rounded-lg"
-                      >
+                      <li className="px-4 py-6 sm:p-6 sm:rounded-lg">
                         <article aria-labelledby={"update-title-" + update.id}>
                           <div>
                             <div className="flex space-x-3">
@@ -512,7 +532,7 @@ export default function CommunityPageComponent() {
             <aside className="hidden xl:block xl:col-span-4">
               <div className="sticky top-4 space-y-4">
                 <section aria-labelledby="who-to-follow-heading">
-                  <Card isHoverable variant="bordered">
+                  <Card isHoverable variant="bordered" shadow>
                     <Card.Body>
                       <div className="rounded-lg">
                         <div className="p-2">
@@ -556,16 +576,18 @@ export default function CommunityPageComponent() {
                                     </p>
                                   </div>
                                   <div className="flex-shrink-0">
-                                    <button
+                                    <Button
+                                    auto
+                                    color="error"
                                       type="button"
                                       className="inline-flex items-center px-3 py-0.5 rounded-full bg-rose-50 hover:bg-rose-300 hover:text-rose-50 text-sm font-medium transition text-rose-700"
                                     >
                                       <PlusSmIcon
-                                        className="-ml-1 mr-0.5 h-5 w-5 text-rose-400 hover:text-rose-50 transition"
+                                        className="-ml-1 mr-0.5 h-5 w-5 text-white hover:text-rose-500 transition"
                                         aria-hidden="true"
                                       />
                                       <span>Follow</span>
-                                    </button>
+                                    </Button>
                                   </div>
                                 </li>
                               ))}
@@ -573,15 +595,16 @@ export default function CommunityPageComponent() {
                           </div>
                           <div className="mt-6">
                             <Link href="/">
-
                               <Button
                                 color="error"
                                 shadow
-                                icon={<Heart2 set="bold" primaryColor="white"/>}                                
+                                icon={
+                                  <Heart2 set="bold" primaryColor="white" />
+                                }
                                 css={{ margin: "auto", w: "100%" }}
-                                >
-                              <Tooltip content="View the data" color="error">
-                                Click to view more peoples
+                              >
+                                <Tooltip content="View the data" color="error">
+                                  Click to view more peoples
                                 </Tooltip>
                               </Button>
                             </Link>
