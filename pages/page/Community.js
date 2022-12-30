@@ -29,8 +29,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import Aos from "aos";
 
 const navigation = [
-  { name: "Home", href: "#", icon: HomeIcon, current: true },
-  { name: "Popular", href: "#", icon: FireIcon, current: false },
+  { name: "Home", href: "./", icon: HomeIcon, current: true },
+  { name: "Popular", href: "./pageNavigations/popular", icon: FireIcon, current: false },
   { name: "Communities", href: "#", icon: UserGroupIcon, current: false },
   { name: "Trending", href: "#", icon: TrendingUpIcon, current: false },
   { name: "Fashion Ideas", href: "#", icon: ColorSwatchIcon, current: false },
