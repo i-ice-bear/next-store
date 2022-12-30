@@ -1,12 +1,12 @@
 import React from "react";
 import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
-import { MdVerified } from "react-icons/md";
+import { MdFastfood, MdMovie, MdOutlineFoodBank, MdSports, MdVerified } from "react-icons/md";
 import { Button, Text, Tooltip } from "@nextui-org/react";
 import { useTheme } from "@nextui-org/react";
 import { Card } from "@nextui-org/react";
 import { ChevronRightIcon, ColorSwatchIcon } from "@heroicons/react/solid";
-import { Heart2 } from "react-iconly";
+import { ArrowRight, Camera, Heart2 } from "react-iconly";
 import {
   ChatAltIcon,
   CodeIcon,
@@ -37,14 +37,9 @@ const navigation = [
 ];
 
 const communities = [
-  { name: "Movies", href: "#" },
-  { name: "Food", href: "#" },
-  { name: "Sports", href: "#" },
-  { name: "Animals", href: "#" },
-  { name: "Science", href: "#" },
-  { name: "Dinosaurs", href: "#" },
-  { name: "Talents", href: "#" },
-  { name: "Gaming", href: "#" },
+  { name: "Movies", href: "#", icon:<MdMovie /> },
+  { name: "Food", href: "#", icon:<MdFastfood /> },
+  { name: "Sports", href: "#", icon:<MdSports /> },
 ];
 
 const tabs = [
@@ -202,23 +197,28 @@ export default function CommunityPageComponent() {
                     </Link>
                   ))}
                 </div>
-                <div className="pt-10">
+                <div className="pt-8">
                   <h4
-                    className="px-3 text-xl font-semibold uppercase tracking-wider"
+                    className="px-2 text-xl font-semibold uppercase tracking-wider"
                     id="communities-headline"
                   >
                     My interests
                   </h4>
                   <div
-                    className="mt-3 space-y-1 px-3"
+                    className="mt-2 px-1"
                     aria-labelledby="communities-headline"
                   >
                     {communities.map((community) => (
                       <Link key={community.name} href={community.href}>
-                        <ul className="list-disc">
+                        <ul className="">
                           <li>
-                            <span className="group flex items-center px-4 py-2 text-sm font-medium  rounded-md transition duration-200 cursor-pointer hover:text-gray-50 hover:bg-rose-500">
-                              <span className="truncate">{community.name}</span>
+                            <span className="group flex items-center px-2 py-2 text-sm font-medium  rounded-md transition duration-200 cursor-pointer hover:text-gray-50 hover:bg-rose-500">
+                        <ArrowRight style={{
+                          display:"flex",
+                          marginRight:6,
+                        }}/>
+                              <span className="float-right flex mx-1 bg-rose-500 p-1 rounded-xl">{community.icon}</span>
+                              <span className="truncate">{community.name}</span> 
                             </span>
                           </li>
                         </ul>
